@@ -1,0 +1,154 @@
+fun numeroAoQuadrado (n : Double) : Double = n * n // essa função quando for chamada vai retornar o valor de n * n 
+
+/* 
+* Uma função one-line (ou single-expression function) no Kotlin é uma função que tem apenas uma linha de código e  
+* utiliza a seta (=) para definir diretamente o valor de retorno, sem precisar escrever return. 
+* No Kotlin, funções podem ser declaradas de forma simplificada usando = para retornar diretamente um valor, ou seja,  
+* não preccisamos escrever o return 
+*/ 
+
+/*  
+* Quando usar Double e Float? 
+* Float (32 bits): Menos preciso, mas ocupa menos memória. Use quando a precisão não for tão importante. 
+* Double (64 bits): Mais preciso, ideal para cálculos que exigem maior exatidão. 
+
+* Resumindo: 
+* Use Float quando a precisão não for tão importante e quiser economizar memória. 
+* Use Double quando precisar de cálculos exatos, como em finanças ou engenharia. 
+*  Float perde precisão após 7 dígitos, Double mantém até 15-16 dígitos. 
+* Regra geral: Se não tiver certeza, prefira Double! 
+*/ 
+
+  
+fun testeListas(){ 
+   // usando a função listOf() - lista imutável  
+    val l1 = listOf(2, 4, 6)  
+    var l2 = listOf(8, 10, 12) 
+    println (l1) 
+    println (l2) 
+
+    // Porquer consigo fazer l2 virar l1, mas n l1 virar l2? 
+
+/* 
+    l1 = l2 
+    println(l1) 
+    - Como l1 é val (imutável), você não pode mudar a referência dela para apontar para l2. 
+
+    l2 = l1  
+    println (l1) 
+    - l2 pode ser reatribuída porque foi declarada como var 
+*/ 
+
+   // Listas polimórficas - são listas que podem armazenar elementos de diferentes tipo 
+   // Se quisermos misturar tipos diferentes na mesma lista, precisamos usar Any, que é o tipo mais genérico em Kotlin. 
+   
+   var l3: MutableList <Any> = mutableListOf ("Joaquim", "Renata", "Pedro") // l3 aponta para uma lista mutável contendo ["Joaquim", "Renata", "Pedro"] 
+   var l4 : MutableList <Any> = mutableListOf(1, 2,3, "Pamela") // l4 aponta para outra lista mutável contendo [1, 2, 3, "Pamela"] 
+
+   //  Como ambas são MutableList<Any>, elas podem armazenar qualquer tipo de dado e são mutáveis, permitindo modificações em seus elementos. 
+   // Podemos atribuir l3 = l4 e l4 = l3, porque ambas as listas são mutáveis e do mesmo tipo, ou seja, MutableList<Any> 
+   // Agora l3 passa a apontar para a mesma lista que l4, ou seja, o conteúdo original de l3 (["Joaquim", "Renata", "Pedro"]) é perdido e l3 agora tem [1, 2, 3, "Pamela"] 
+
+   l3 = l4 
+   println (l3) // Output: [1, 2, 3, Pamela] 
+
+   // Isso é possível porque l3 foi declarada como var, permitindo mudar a referência para outra lista. 
+   // Quando usamos val, a referência da lista não pode ser alterada, mesmo que os elementos dentro dela possam ser modificados. 
+   // se fosse uma lista "listOf()" também daria erro, pq listOf() cria uma lista imutável, então não poderíamos reatribuir uma nova lista a l3. 
+
+   // Se a lista for val podemos modificar os elementos da lista, mas não mudar a lista inteira por outra lista  
+
+   val lista: MutableList<String> = mutableListOf("A", "B", "C") 
+
+   // Podemos modificar os elementos da lista 
+
+   lista[0] = "X"   
+   lista.add("D")   
+   println(lista) // Output: ["X", "B", "C", "D"] 
+
+   // Mas não podemos trocar a lista inteira por outra, porque val impede a mudança de referência 
+
+   lista = mutableListOf("1", "2", "3") // Erro: Val cannot be reassigned  
+
+   // Se usarmos val podemos mudar a lista inteira 
+
+   var lista: MutableList<String> = mutableListOf("A", "B", "C") 
+   lista = mutableListOf("1", "2", "3") // Funciona porque `var` permite mudar a referência 
+   println(lista) // Output: ["1", "2", "3"] 
+
+   // var permite que lista troque sua referência para outra lista completamente nova. 
+} 
+
+// Kotlin possui listas, conjuntos (sets) e mapas (maps) 
+// Listas: As listas armazenam valores ordenados e podem conter elementos repetidos. 
+// Elementos vão sempre para o final da lista e posso aplicar ordenacao nos elementos  
+// Imutáveis (listOf()) → Não podem ser modificadas após a criação. 
+
+val frutas = listOf("Maçã", "Banana", "Laranja") 
+println(frutas[0]) // Saída: Maçã 
+
+// Mutáveis (mutableListOf()) → Permitem adicionar/remover elementos. 
+
+val numeros = mutableListOf(1, 2, 3) 
+numeros.add(4) // Adiciona um elemento 
+numeros.remove(2) // Remove o número 2 
+println(numeros) // Saída: [1, 3, 4]  
+
+// Sets (Conjuntos): Os Sets armazenam elementos únicos e não garantem ordem. 
+// Elementos únicos q n se repetem e n consigo ordenar, se eu já insiro os dados ordenado n tem problema, mas se eu quero ordenar tem problema dps de inserir não será possível  
+// Conjunto Imutável (setOf()): Não aceita elementos duplicados. 
+
+val setExemplo = setOf(1, 2, 3, 3, 4) 
+println(setExemplo) // Saída: [1, 2, 3, 4] 
+
+//  Conjunto Mutável (mutableSetOf()): Permite adicionar e remover elementos, mas continua sem aceitar valores repetidos. 
+
+val setMutavel = mutableSetOf("A", "B", "C") 
+setMutavel.add("D")  
+setMutavel.add("B") // Não será adicionado, pois já existe 
+println(setMutavel) // Saída: [A, B, C, D] 
+
+// Maps (Dicionários): Os Maps armazenam dados em pares chave-valor. 
+// Um Map em Kotlin armazena dados em forma de pares chave-valor, onde: 
+// A chave (Key) é um identificador único. 
+// O valor (Value) é a informação associada a essa chave. 
+// Mapa Imutável (mapOf()): Não pode ser alterado após a criação. 
+
+val mapaImutavel = mapOf("nome" to "Sophia", "idade" to 25) 
+println(mapaImutavel["nome"]) // Saída: Sophia 
+
+// Mapa Mutável (mutableMapOf()): Pode ser modificado, permitindo adicionar ou remover pares. 
+
+val mapaMutavel = mutableMapOf("A" to 1, "B" to 2) 
+mapaMutavel["C"] = 3 // Adiciona um novo par 
+mapaMutavel.remove("A") // Remove o par com chave "A" 
+println(mapaMutavel) // Saída: {B=2, C=3} 
+
+fun main() { 
+    val X = 10.0 
+    println(numeroAoQuadrado(x)) 
+    val nome = "Joao"  
+    val qtde = 10  
+    val fruta = " Maca" 
+	println("${nome} comprou ${qtde} frutas do tipo ${fruta}") 
+    // única coisa q é fixa é comprou o resto é td variavel, posso atribuir nome como sophia (val nome = "Sophia") 
+} 
+
+/* 
+* Kotlin é uma linguagem orientada a objetos, onde tudo é um objeto (é uma entidade que contém atributos) 
+* Tipos como String e Double são objetos, mas imutáveis — você não pode alterar seus valores diretamente após a criação. 
+* val: Declara uma variável com referência imutável. Não pode atribuir um novo valor à variável,  
+* mas pode modificar o conteúdo de um objeto mutável (ex: listas). 
+* var: Declara uma variável com referência mutável. Você pode reatribuir valores a ela. 
+* Imutabilidade: Objetos como String e Double são imutáveis, ou seja, seus valores não podem ser alterados após a atribuição. 
+* Kotlin permite modelar dados com classes, herança, polimorfismo, encapsulamento e abstração,  
+* típicos da programação orientada a objetos. 
+*/ 
+
+  
+/* 
+* Na programação orientada a objetos, você cria objetos que representam coisas reais,  
+* e esses objetos têm atributos (características) e métodos (ações).  
+* Você organiza o código em torno desses objetos e usa conceitos como herança (compartilhar características)  
+* e polimorfismo (diferentes comportamentos para o mesmo método). 
+*/ 
