@@ -1,0 +1,95 @@
+/* 
+1) Fazer 5 funções de geometria / trigonometria sem ser one-line e depois passar para one-line 
+*/ 
+
+// Função número 1 
+fun calcularAreaTriangulo(base: Float, altura: Float): Float { 
+    val area = (base * altura) / 2 
+    return area 
+} 
+
+fun main() { 
+    val base = 5.0f 
+    val altura = 10.0f 
+    println("Área do triângulo: ${calcularAreaTriangulo(base, altura)}") 
+} 
+
+fun calcularAreaTriangulo(base: Float, altura: Float): Float = (base * altura) / 2 
+
+
+// Função número dois  
+fun calcularAreaQuadrado(lado: Float): Float { 
+    val area = lado * lado 
+    return area 
+} 
+
+fun main() { 
+    val lado = 4.0f 
+    println("Área do quadrado: ${calcularAreaQuadrado(lado)}") 
+} 
+
+fun calcularAreaQuadrado(lado: Float): Float = lado * lado 
+
+// Função número três 
+fun calcularPerimetroQuadrado(lado: Float): Float { 
+    val perimetro = 4 * lado 
+    return perimetro 
+} 
+
+fun main() { 
+    val lado = 4.0f 
+    println("Perímetro do quadrado: ${calcularPerimetroQuadrado(lado)}") 
+} 
+
+fun calcularPerimetroQuadrado(lado: Float): Float = 4 * lado 
+
+// Função número quatro 
+fun calcularPerimetroRetangulo(largura: Float, altura: Float): Float { 
+    val perimetro = 2 * (largura + altura) 
+    return perimetro 
+}   
+
+fun main() { 
+    val largura = 5.0f 
+    val altura = 3.0f 
+    println("Perímetro do retângulo: ${calcularPerimetroRetangulo(largura, altura)}") 
+} 
+
+fun calcularPerimetroRetangulo(largura: Float, altura: Float): Float = 2 * (largura + altura) 
+
+// Função número cinco  
+fun somar(a: Int, b: Int): Int { 
+    val resultado = a + b 
+    return resultado 
+} 
+
+fun main() { 
+    val a = 5 
+    val b = 3 
+    println("Soma: ${somar(a, b)}") 
+} 
+
+fun somar(a: Int, b: Int): Int = a + b 
+
+/* 
+2) No Kotlin strings são mutáveis ou imutáveis? porque?  
+*/ 
+// Em Kotlin, as strings são imutáveis, o que significa que não podemos alterar o conteúdo de uma string depois que ela é criada. 
+// Quando você tenta "mudar" uma string em Kotlin, na verdade você está criando uma nova string, diferente da que já existe  
+
+fun main() { 
+    val nome = "Maria" 
+    // Tentar mudar uma string não funciona 
+    // nome[0] = 'm'  // Isso daria erro!  
+    // O que acontece é que quando você "modifica" uma string, 
+    // você cria uma nova string! 
+
+    val novoNome = nome.replace('M', 'm')  // Criamos uma nova string 
+    println(nome)     // Vai imprimir "Maria" (a original) 
+    println(novoNome) // Vai imprimir "maria" (a nova string) 
+} 
+
+/* 
+3) Procurar como funciona um aplicativo de calculadora de resistor, e implementar e descobrir o valor de um resistor  
+de acordo com as cores que ele representa 
+*/ 
