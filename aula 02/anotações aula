@@ -1,3 +1,5 @@
+// Copilador utilizado: Kotlin playground
+
 fun numeroAoQuadrado (n : Double) : Double = n * n // essa função quando for chamada vai retornar o valor de n * n 
 
 /* 
