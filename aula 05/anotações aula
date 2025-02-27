@@ -1,0 +1,165 @@
+// Copilador Utilizado: Intellij IDEA 
+
+/**
+ * Uma classe do tipo Data Class armazena somente dados e não tem operações (funções)
+ * Só serve como "estrutura de dados, ou seja, um tipo que apenas agrega outros
+ */
+
+// classe especifica só para armazenar dados
+// quando eu defino uma classe eu defino um molde
+
+/**
+ * Data Class: Um objeto que só tem dados
+ */
+
+data class Endereco (
+    // tudo isso é um construtor especificado
+    var logradouro: String,
+    var numero: Int,
+    var complemento: String,
+    var bairro: String,
+    var cidade: String,
+    var uf: String,
+    var cep: String
+)
+
+/**
+ * Classe: È uma especificação de um tipo de objeto
+ * (De maneira informal, a classe é um MOLDE para se criar instancias daquele tipo/objeto)
+ * CLASS = MOLDE = TIPO ESPECÍFICO (um tipo específico criado por você) = ESPECIFICAÇÃO DE ALGO
+ * INSTÂNCIA = UM OBJETO REAL (OU SEJA QUE TEM VIDA) DAQUELA ESPECIFICAÇÃO
+ */
+
+/**
+fun main() {
+    // criando instancias da classe Endereco
+    // para fazer aparecer as caixinhas colocar ""
+    val e1: Endereco = Endereco("Av. Brasil",
+        400,
+        "",
+        "Centro",
+        "Campinas",
+        "SP",
+        "123123-111")
+
+    // Exercício criar um endereco e2
+    var e2: Endereco = Endereco ("Av. Doutor",
+        500,
+        "casa",
+        "centro",
+        "Campinas",
+        "RJ",
+        "123456-333")
+}
+**/
+
+// Classe tradicional (como é em Java)
+// Estamos criando o fabricante de instancias
+class Jogador {
+    var nome: String = ""
+    var idade: Int = 0
+    var posicaoDePreferencia: String = ""
+    var posicaoAtualX: Int = 0
+    var posicaoAtualY: Int = 0
+
+    // todo jogador juta a bola
+    fun chutar(b: Bola) {
+        if (this.posicaoAtualX == b.posicaoAtualX && this.posicaoAtualY == b.posicaoAtualY) {
+            println("Jogador: ${this.nome} chutou a bola")
+        } else {
+            println("Chute falhou - pósições diferentes")
+        }
+    }
+
+    fun defenderComAsMaos() {
+        println ("Jogador: ${this.nome} defendeu com as mãos")
+    }
+
+    fun saltar() {
+        println("jogador: ${this.nome} saltou")
+    }
+}
+
+class Bola {
+    var peso: Double = 0.0
+    var posicaoAtualX = 0
+    var posicaoAtualY = 0
+
+    /**
+     * @param xo: ponto x da origem de onde a bola está
+     * @param yo: ponto y de origem
+     * @param xd: ponto x de destino
+     * @param yd: ponto y de destino
+     */
+
+    fun deslocarSe(xo: Int,
+                   yo: Int,
+                   xd: Int,
+                   yd: Int,
+                   velocidade: Double) {
+        println("Bola se deslocando do ponto ($xo, $yo) ao ponto ($xd, $yd), na velocidade $velocidade") // pq n uso this aqui?
+    }
+}
+
+fun main () {
+    var bola = Bola ()
+    bola.peso = 500.0
+    bola.posicaoAtualX = 100
+    bola.posicaoAtualY = 301 // se eu coloco 300 - neymar chutou a bola, 301 - chute falhou
+
+
+    var j1 = Jogador()
+    j1.nome = "Neymar"
+    j1.posicaoDePreferencia = "ATACANTE"
+    j1.idade = 33
+
+    // mesma posicao da bola
+    j1.posicaoAtualX = 100
+    j1.posicaoAtualY = 300
+
+    j1.chutar(bola)
+    j1.saltar()
+}
+
+/**
+ * Uma classe pode ter atributos e funções. O nome de uma função que está dentro de uma classe se chama método
+ * Quando eu falo: acrescente o método saltar na classe jogador - preciso definir oq é saltar e colocar na classe jogador
+ */
+
+/**
+ * Esse é um exemplo de herança - quando queremos definir que coisas são classificadas em uma maior, mas elas tem diferenças
+ *
+ */
+
+open class Animal{
+    var peso: Double = 0.0
+    var idade: Int = 0
+}
+
+class Leao: Animal() {
+    fun fugir() {
+        println("Leão rugindo...")
+    }
+}
+
+class Cachorro: Animal() {
+    fun latir() {
+        println ("Cachorro latindo..")
+    }
+}
+
+open class Pessoa {
+    var nome: String = ""
+    var idade: String = ""
+    var cpf: String = ""
+    var rg: String = ""
+}
+
+// empilhamento to herança
+open class Funcionario: Pessoa() {
+    var matricula: String = ""
+}
+
+class Professor: Funcionario() {
+    var titulacaoMaxima: String = ""
+}
