@@ -1,0 +1,24 @@
+// Como funciona a data class no Playground -> é diferente do Intellij IDEA
+// A data class define um construtor primário que recebe todos esses atributos
+// Quando criamos um objeto da classe, podemos passar os valores na ordem em que os atributos foram declarados.
+data class Endereco(
+    // tudo isso é um construtor especificado
+    var logradouro: String,
+    var numero: Int,
+    var complemento: String,
+    var bairro: String,
+    var cidade: String,
+    var uf: String,
+    var cep: String
+)
+
+
+fun main () {
+    // O Kotlin automaticamente associa os valores aos parâmetros correspondentes, pois eles estão na mesma ordem que 
+    // foram definidos na classe.
+    val e1: Endereco = Endereco("Av. Brasil", 400, "", "Centro", "Campinas", "SP", "123123-111") 
+}
+
+// O motivo pelo qual não precisamos escrever os nomes dos atributos (como logradouro = "Av. Brasil" - ver exemplo que está no 
+// Intellij IDEA da aula 05 - anotações aula) no Kotlin Playground,Android Studio ou IntelliJ IDEA é porque o Kotlin usa 
+// inferência baseada na ordem dos parâmetros do construtor primário.
