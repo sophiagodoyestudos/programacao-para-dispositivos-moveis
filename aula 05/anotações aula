@@ -1,19 +1,38 @@
 // Copilador Utilizado: Intellij IDEA
+// Esse código possui vários conceitos fundamentais de programação orientada a objetos em Kotlin
 
 /**
- * Uma classe do tipo Data Class armazena somente dados e não tem operações (funções)
- * Só serve como "estrutura de dados, ou seja, um tipo que apenas agrega outros
- */
+ * O que é Programação Orientada a Objetos?
+    Programação Orientada a Objetos (POO) é um paradigma de programação que organiza o código em torno de objetos, que são representações do mundo real dentro do programa.
+Ela ajuda a tornar o código mais organizado, reutilizável e fácil de entender.
 
-// classe especifica só para armazenar dados
-// quando eu defino uma classe eu defino um molde
+ * O que é uma Data Class?
+ - Uma classe do tipo Data Class armazena somente dados e não tem operações (funções)
+ - Só serve como "estrutura de dados", ou seja, um tipo que apenas agrega outros.
+ - A data class é usada para armazenar apenas dados, sem lógica interna - Data Class: Um objeto que só tem dados
+ - Quando criamos uma classe, estamos definindo um molde para criar objetos. Esse molde especifica quais atributos e comportamentos um objeto terá.
 
-/**
- * Data Class: Um objeto que só tem dados
- */
+ - Classe → Molde: Define as características (atributos) e ações (métodos) que os objetos terão.
+ - Objeto → Instância: É uma cópia concreta da classe com valores específicos.
 
+Exemplo:
+ * Imagine uma forma de bolo.
+ * A classe é a forma (o molde).
+ * Cada bolo assado é um objeto criado a partir desse molde, mas com ingredientes diferentes.
+
+ Resumindo:
+ * Classe: È uma especificação de um tipo de objeto
+ * (De maneira informal, a classe é um MOLDE para se criar instancias daquele tipo/objeto)
+ * CLASS = MOLDE = TIPO ESPECÍFICO (um tipo específico criado por você) = ESPECIFICAÇÃO DE ALGO
+ * INSTÂNCIA = UM OBJETO REAL (OU SEJA QUE TEM VIDA) DAQUELA ESPECIFICAÇÃO
+ **/
+
+// Criando a Classe Endereço
+// A classe Endereco é um molde para armazenar dados de endereços
+// Essa data class representa um endereço. Ela possui sete atributos
 data class Endereco (
-    // tudo isso é um construtor especificado
+    // a data classe possui um construtor primário que recebe os atributos
+    // tudo isso é um construtor primário especificado
     var logradouro: String,
     var numero: Int,
     var complemento: String,
@@ -23,17 +42,10 @@ data class Endereco (
     var cep: String
 )
 
-/**
- * Classe: È uma especificação de um tipo de objeto
- * (De maneira informal, a classe é um MOLDE para se criar instancias daquele tipo/objeto)
- * CLASS = MOLDE = TIPO ESPECÍFICO (um tipo específico criado por você) = ESPECIFICAÇÃO DE ALGO
- * INSTÂNCIA = UM OBJETO REAL (OU SEJA QUE TEM VIDA) DAQUELA ESPECIFICAÇÃO
- */
-
-/**
+// No fun main(), criamos dois objetos (instâncias) da classe Endereco
 fun main() {
-    // criando instancias da classe Endereco
-    // para fazer aparecer as caixinhas colocar ""
+    // para fazer aparecer as caixinhas em cinza colocar "" e digitar o que quer
+    // Aqui estamos criando dois endereços diferentes, usando o construtor primário da data class.
     val e1: Endereco = Endereco("Av. Brasil",
         400,
         "",
@@ -42,7 +54,7 @@ fun main() {
         "SP",
         "123123-111")
 
-    // Exercício criar um endereco e2
+    // Criando outro endereço
     var e2: Endereco = Endereco ("Av. Doutor",
         500,
         "casa",
@@ -51,37 +63,60 @@ fun main() {
         "RJ",
         "123456-333")
 }
-**/
 
-// Classe tradicional (como é em Java)
+// Classe tradicional - atributos e métodos são definidos manualmente - pode ter lógica de negócio
 // Estamos criando o fabricante de instancias
+// Jogador é uma classe tradicional (não é data class porque tem lógica dentro dela)
+// A classe Jogador representa um jogador em um jogo de futebol.
+//Ela possui atributos (dados que definem um jogador) e métodos (ações que um jogador pode executar).
 class Jogador {
     var nome: String = ""
     var idade: Int = 0
+    // Posição em que ele prefere jogar (ex: atacante, zagueiro).
     var posicaoDePreferencia: String = ""
+    // A posição atual do jogador no campo (em coordenadas X e Y).
     var posicaoAtualX: Int = 0
     var posicaoAtualY: Int = 0
 
-    // todo jogador juta a bola
+    // Métodos sa classe Jogador
+    // A classe também possui métodos, que representam ações que o jogador pode realizar.
+    // todo jogador chuta a bola
     fun chutar(b: Bola) {
+        // O jogador só consegue chutar a bola se ele estiver na mesma posição da bola no campo.
+        // Se as coordenadas (X, Y) do jogador forem iguais às da bola, a bola é chutada.
         if (this.posicaoAtualX == b.posicaoAtualX && this.posicaoAtualY == b.posicaoAtualY) {
             println("Jogador: ${this.nome} chutou a bola")
         } else {
+            // Se estiverem diferentes, a tentativa de chute falha
             println("Chute falhou - pósições diferentes")
         }
     }
 
+    // Mostra que o jogador defendeu a bola
     fun defenderComAsMaos() {
+        // imprime que o jogador defendeu a bola com as mãos
         println ("Jogador: ${this.nome} defendeu com as mãos")
     }
 
+    // Mostra que o jogador saltou
     fun saltar() {
+        // imprime que o jogador saltou.
         println("jogador: ${this.nome} saltou")
     }
 }
 
+/**
+ * Uma classe pode ter atributos e funções. O nome de uma função que está dentro de uma classe se chama método
+ * Quando eu falo: acrescente o método saltar na classe jogador - preciso definir oq é saltar e colocar na classe jogador
+ */
+
+// Class bola (objeto do jogo)
+// A classe Bola representa a bola do jogo, com atributos e um método.
 class Bola {
+    // peso da bola
     var peso: Double = 0.0
+
+    // coordenadas de onde a bola está
     var posicaoAtualX = 0
     var posicaoAtualY = 0
 
@@ -92,67 +127,92 @@ class Bola {
      * @param yd: ponto y de destino
      */
 
+    // Simula o movimento da bola de um ponto (xo, yo) para outro (xd, yd), e informa a velocidade
     fun deslocarSe(xo: Int,
                    yo: Int,
                    xd: Int,
                    yd: Int,
                    velocidade: Double) {
-        println("Bola se deslocando do ponto ($xo, $yo) ao ponto ($xd, $yd), na velocidade $velocidade") // pq n uso this aqui?
+        // Não usamos this (igual utilizado no jogador) aqui porque os parâmetros xo, yo, xd, yd são variáveis locais dentro do método e não atributos da classe
+        println("Bola se deslocando do ponto ($xo, $yo) ao ponto ($xd, $yd), na velocidade $velocidade")
     }
 }
 
+// Essa função cria e manipula objetos das classes Jogador e Bola.
 fun main () {
+    // Criamos um objeto bola e definimos sua posição inicial como (100, 301).
     var bola = Bola ()
     bola.peso = 500.0
     bola.posicaoAtualX = 100
     bola.posicaoAtualY = 301 // se eu coloco 300 - neymar chutou a bola, 301 - chute falhou
 
-
+    // Criamos um jogador chamado "Neymar" e atribuímos suas características
     var j1 = Jogador()
     j1.nome = "Neymar"
     j1.posicaoDePreferencia = "ATACANTE"
     j1.idade = 33
 
-    // mesma posicao da bola
+    // Definimos que Neymar está na posição (100, 300)
     j1.posicaoAtualX = 100
     j1.posicaoAtualY = 300
 
+    // Ele tenta chutar a bola.
+    // Como a bola está na posição (100, 301), o chute falha.
     j1.chutar(bola)
     j1.saltar()
 }
 
 /**
- * Uma classe pode ter atributos e funções. O nome de uma função que está dentro de uma classe se chama método
- * Quando eu falo: acrescente o método saltar na classe jogador - preciso definir oq é saltar e colocar na classe jogador
+ * Exemplo de como funcionaria para a bola ser chutada com sucesso
+ * j1.posicaoAtualX = 100
+ * j1.posicaoAtualY = 300
+ * bola.posicaoAtualX = 100
+ * bola.posicaoAtualY = 300
+ - Aqui o jogador está na mesma posição que a bola
+ - Se mudarmos a posição da bola para (100, 301), o chute falha.
  */
 
-/**
- * Esse é um exemplo de herança - quando queremos definir que coisas são classificadas em uma maior, mas elas tem diferenças
- *
- */
 
+
+// Herança e Especialização
+// Herança permite que uma classe herde atributos e métodos de outra classe.
+// Criamos uma classe Animal, e depois especializamos Leão e Cachorro
 abstract class Animal{
+    // peso e idade são atributos comuns a todos os animais.
     var peso: Double = 0.0
     var idade: Int = 0
 
+    // caminhar() é um método abstrato → Ele deve ser implementado pelas subclasses (Leao, Cachorro).
     abstract fun caminhar()
 }
 
+// Leao herda de Animal → Ou seja, possui peso, idade e deve implementar caminhar().
 class Leao: Animal() {
+    // O método fugir() foi adicionado apenas para Leões, pois outros animais não precisam dele.
     fun fugir() {
         println("Leão rugindo...")
     }
+
     override fun caminhar() {
-        
     }
 }
 
+// Cachorro também herda de Animal.
 class Cachorro: Animal() {
+    override fun caminhar() {
+        println("Cachorro caminhando...")
+    }
+
+    // O método latir() foi adicionado apenas para Cachorros, pois é uma ação exclusiva deles.
     fun latir() {
         println ("Cachorro latindo..")
     }
 }
 
+// Heranças em Pessoas
+// Classe pessoas
+// Pessoa contém atributos comuns a todas as pessoas.
+// A palavra-chave open permite que outras classes herdem dela.
 open class Pessoa {
     var nome: String = ""
     var idade: String = ""
@@ -160,11 +220,42 @@ open class Pessoa {
     var rg: String = ""
 }
 
-// empilhamento to herança
+// Classe Funcionários
+// Funcionario herda os atributos de Pessoa (nome, idade, cpf, rg).
+// Funcionario tem um novo atributo, matricula, que é exclusivo de funcionários.
+// A palavra open indica que essa classe pode ser herdada por outras classes.
 open class Funcionario: Pessoa() {
     var matricula: String = ""
 }
 
+//Classe professor
+// Professor herda de Funcionario, então ele tem acesso a todos os atributos:
+// nome, idade, cpf, rg (de Pessoa).
+// matricula (de Funcionario).
+// Além disso, ele possui titulacaoMaxima, que é exclusivo de professores.
 class Professor: Funcionario() {
     var titulacaoMaxima: String = ""
 }
+
+/**
+ * Empilhamento de Herança
+ * A herança está empilhada da seguinte forma:
+ * Pessoa (Superclasse)
+ * │
+ * └──> Funcionario (Herda de Pessoa)
+ *      │
+ *      └──> Professor (Herda de Funcionario)
+ * Isso significa que:
+ * Professor herda tudo de Funcionario, que por sua vez herda tudo de Pessoa.
+ * Podemos dizer que um Professor também é um Funcionario e uma Pessoa.
+ *
+ */
+
+/**
+ * Resumo final
+ * Data Class: Apenas armazena dados, sem lógica interna.
+ * Classe Tradicional: Pode ter atributos e métodos com lógica de negócio.
+ * Herança: Permite criar especializações de classes e reaproveitar código.
+ * Objetos: São instâncias concretas de uma classe.
+ * Métodos: São funções dentro de uma classe que definem comportamentos.
+ */
