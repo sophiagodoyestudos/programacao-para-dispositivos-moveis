@@ -1,4 +1,4 @@
-// Copilador Utilizado: Intellij IDEA 
+// Copilador Utilizado: Intellij IDEA
 
 /**
  * Uma classe do tipo Data Class armazena somente dados e não tem operações (funções)
@@ -131,14 +131,19 @@ fun main () {
  *
  */
 
-open class Animal{
+abstract class Animal{
     var peso: Double = 0.0
     var idade: Int = 0
+
+    abstract fun caminhar()
 }
 
 class Leao: Animal() {
     fun fugir() {
         println("Leão rugindo...")
+    }
+    override fun caminhar() {
+        
     }
 }
 
