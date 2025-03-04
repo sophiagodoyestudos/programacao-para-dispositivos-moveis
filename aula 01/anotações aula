@@ -1,117 +1,122 @@
-// Copilador utilizado: Kotlin Playground: Edit, Run, Share Kotlin Code Online 
+// Copilador utilizado: Kotlin Playground
 
-// "fun main" é a entrada principal do programa  
-fun main() { 
-    // val = value (valor constante imutável - valor não muda durante o programa, ou seja, não pode ser modificado depois de atribuído) 
-    val pi = 3.1415 // Não pode ser alterado 
+// TIPOS DE VARIÁVEIS: VAL E VAR
+// "fun main" é a entrada principal do programa
+fun main() {
+    // val = value (valor constante imutável - valor não muda durante o programa, ou seja, não pode ser modificado depois de atribuído)
+    val pi = 3.1415 // Não pode ser alterado
 
-    // var = variable (variável - pode ter seu valor alterado ao longo do programa) 
-    var r = 10 // se a gnt não mudar essa variável durante o programa ela n precisa ser var, pode ser val. Mas se eu mudar ela durante o programa tem que ser var 
-    r = 11 // mudei a variável aqui, então ela teria que ser var  
+    // var = variable (variável - pode ter seu valor alterado ao longo do programa)
+    var r = 10 // se a gnt não mudar essa variável durante o programa ela n precisa ser var, pode ser val. Mas se eu mudar ela durante o programa tem que ser var
+    r = 11 // mudei a variável aqui, então ela teria que ser var
 
-    // println é uma função built-in (uma função que já vem pronta e você só usa - você não precisa programar ela) - ex: bibliotecas 
-    // Uma função built-in (ou função embutida) é uma função que já vem pronta na linguagem de programação, então você não precisa escrevê-la do zero para usá-la 
-    println(pi) 
-    println(r) 
-}  
+    // println é uma função built-in (uma função que já vem pronta e você só usa - você não precisa programar ela) - ex: bibliotecas
+    // Uma função built-in (ou função embutida) é uma função que já vem pronta na linguagem de programação, então você não precisa escrevê-la do zero para usá-la
+    println(pi)
+    println(r)
+}
 
 
-// barra do instagram é sempre val (imutável - val), o que muda são os elementos que estão nelas (mutáveis - var) 
-// a barra não é mutável, porque ela não vai sair de lá  
+// barra do instagram é sempre val (imutável - val), o que muda são os elementos que estão nelas (mutáveis - var)
+// a barra não é mutável, porque ela não vai sair de lá
 
-fun main() { 
-    val pi = 3.1415 
-    pi = 3.14 
-} 
+fun main() {
+    val pi = 3.1415
+    pi = 3.14 // não posso mudar o valor de pi, pq ele foi definido como val (imutável)
+}
 
-fun main() { 
-    // Uma vez declarada uma variável sem definir explicitamente o tipo  
-    // e atribuir uma valor, imediatamente o Kotlin, define por INFERÊNCIA  
-    // qual será o tipo daquela variável. Este é o conceito chamado INFERÊNCIA DE TIPOS 
-    // No Kotlin, não é obrigatório definir o tipo da variável, porque ele consegue descobrir automaticamente (inferência de tipos). 
-    
-    var nome = "Daniel" // Kotlin entende que é uma String 
-    
-    // Se depois tentássemos fazer nome = true, daria erro, pois nome foi inferido como String e não aceita um Boolean. 
-    // por inferencia a variável nome é String e portanto não aceitaria uma valor boolean (booleano) com reatribuição 
-    // está dando erro não pq a variável é var, mas sim pq estamos tentando mudar o tipo da variável 
-    nome = true  
+// INFERÊNCIA DE TIPOS
+fun main() {
+    // Uma vez declarada uma variável sem definir explicitamente o tipo
+    // e atribuir uma valor, imediatamente o Kotlin, define por INFERÊNCIA
+    // qual será o tipo daquela variável. Este é o conceito chamado INFERÊNCIA DE TIPOS
+    // No Kotlin, não é obrigatório definir o tipo da variável, porque ele consegue descobrir automaticamente qual o tipo daquela variável (inferência de tipos).
 
-} 
+    var nome = "Daniel" // Kotlin entende que é uma String
 
-/* 
-* Quanto mais variáveis criamos, mais memória do computador é usada, porque cada variável precisa de um espaço na RAM para armazenar seu valor. 
-* Se criamos muitas variáveis desnecessárias, o programa pode consumir mais memória do que precisa. 
-*/  
+    // Se depois tentássemos fazer nome = true, daria erro, pois nome foi inferido como String e não aceita um Boolean.
+    // por inferência a variável nome é String e portanto não aceitaria uma valor boolean (booleano) com reatribuição
+    // está dando erro não pq a variável é var, mas sim pq estamos tentando mudar o tipo da variável
+    nome = true
+}
 
-fun main() { 
-    // declarando a variável, definindo o seu tipo e valor  
-    var nome: String = "Joao" 
+/*
+* Quanto mais variáveis criamos, mais memória do computador é usada, porque cada variável precisa de um espaço na RAM para armazenar seu valor.
+* Se criamos muitas variáveis desnecessárias, o programa pode consumir mais memória do que precisa.
+*/
 
-    // declarando a variável como bool 
-    var sucesso: Boolean  
+// TIPAGEM EXPLÍCITA
+// Quando você especifica o tipo da variável diretamente
+fun main() {
+    // declarando a variável, definindo o seu tipo e valor
+    var nome: String = "Joao"
 
-    // inicializando a variável  
-    sucesso = true  
+    // declarando a variável como bool
+    var sucesso: Boolean
 
-    // xpto pode ser qualquer tipo, estou avisando o Kotlin que vou usar essa variável para um monte de tipos diferentes 
-    // o tipo Any permite o polimorfido de TIPOS no Kotlin  
-    // em outras palavras, uma variável do tipo Any, pode ser atribuída com qualquer coisa 
-    // uma hora string, outra inteiro etc etc etc... 
-    // O tipo Any é um tipo genérico que aceita qualquer tipo de dado (String, Int, Boolean, Double, etc.). 
-	// Ele permite polimorfismo de tipos (a variável pode ser de diferentes tipos em momentos diferentes). 
+    // inicializando a variável
+    sucesso = true
 
-    var xpto: Any  // Pode ser qualquer coisa 
-    xpto = "Joao" // String 
-    xpto = 2.31 // Double 
-    xpto = true // Boolean 
-} 
+    // xpto pode ser qualquer tipo, estou avisando o Kotlin que vou usar essa variável para um monte de tipos diferentes
+    // o tipo Any permite o polimorfido de TIPOS no Kotlin
+    // em outras palavras, uma variável do tipo Any, pode ser atribuída com qualquer coisa
+    // uma hora string, outra inteiro etc etc etc...
+    // O tipo Any é um tipo genérico que aceita qualquer tipo de dado (String, Int, Boolean, Double, etc.).
+    // Ele permite polimorfismo de tipos (a variável pode ser de diferentes tipos em momentos diferentes).
 
-  
+    // TIPO ANY
+    var xpto: Any  // Pode ser qualquer coisa
+    xpto = "Joao" // String
+    xpto = 2.31 // Double
+    xpto = true // Boolean
+}
 
-fun main() { 
-    val pi = 3.1415 
-    val r = 10  
-    val comp = 2 * pi * r // cálculo é feito e atribuido a constante  
-    println(comp) 
-}  
+fun main() {
+    val pi = 3.1415
+    val r = 10
+    val comp = 2 * pi * r // cálculo é feito e atribuido a constante
+    println(comp)
+}
 
-/* 
-* No Kotlin precisamos especificar os tipos dos parâmetros de entrada em uma função = eh obrigatório 
-* Precisamos declarar o tipo de cada parâmetro na função 
-* Também precisamos dizer o tipo de retorno da função 
-*/ 
+// FUNÇÕES
+// Funções no Kotlin exigem que você declare os tipos dos parâmetros de entrada e o tipo de retorno da função.
 
-// pi: Double e r: Double → parâmetros de entrada são Double 
-// : Double no final → significa que a função retorna um Double 
+/*
+* No Kotlin precisamos especificar os tipos dos parâmetros de entrada em uma função = eh obrigatório
+* Precisamos declarar o tipo de cada parâmetro na função
+* Também precisamos dizer o tipo de retorno da função
+*/
 
-fun calcCompCircunf(pi: Double, r: Double): Double {  
-    return (2 * pi * r)  
-} 
+// OPERAÇÕES MATEMÁTICAS
+fun calcCompCircunf(pi: Double, r: Double): Double {
+    return (2 * pi * r)
+}
+// pi: Double e r: Double → parâmetros de entrada são Double
+// : Double no final → significa que a função retorna um Double
 
-  
-fun main() { 
-    val pi = 3.1415 
-    val r = 10 
-    val comp = calcCompCircunf(pi,r) // essa função é atribuida como val porque esse valor não muda depois de atribuido, se o valor que saí da função mudar dps ela teria q ser var  
-    println(comp) 
-} 
+fun main() {
+    val pi = 3.1415
+    val r = 10
+    val comp = calcCompCircunf(pi,r) // essa função é atribuida como val porque esse valor não muda depois de atribuido, se o valor que saí da função mudar dps ela teria q ser var
+    println(comp)
+}
 
-// Exercício: 
-// Faça uma função que receba um número inteiro e retorne se for par, true, se for impar, false 
-// Jeito que eu fiz - Esse jeito funciona, mas tem um pouco de código desnecessário. 
+// EXEMPLO DE FUNÇÃO COM CONDICIONAL
+// Exercício:
+// Faça uma função que receba um número inteiro e retorne se for par, true, se for impar, false
+// Jeito que eu fiz - Esse jeito funciona, mas tem um pouco de código desnecessário.
 
-fun ehPar(n: Int): Boolean { 
-    if (n % 2 == 0) { 
-        return true 
-    } else { 
-        return false 
-    } 
-} 
+fun ehPar(n: Int): Boolean {
+    if (n % 2 == 0) {
+        return true
+    } else {
+        return false
+    }
+}
 
-  
-// Jeito que o professor fez (estudar o jeito dele) 
-// evitamos if e else desnecessários  
-fun ehPar(n: Int): Boolean { 
-    return (n % 2 == 0) 
-} 
+
+// Jeito que o professor fez (estudar o jeito dele)
+// evitamos if e else desnecessários
+fun ehPar(n: Int): Boolean {
+    return (n % 2 == 0)
+}
