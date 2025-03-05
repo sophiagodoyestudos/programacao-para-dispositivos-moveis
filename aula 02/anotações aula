@@ -21,16 +21,29 @@ fun numeroAoQuadrado (n : Double) : Double = n * n // essa função quando for c
 * Regra geral: Se não tiver certeza, prefira Double! 
 */ 
 
-  
+// LISTAS (LISTOF E MUTABLELISTOF)
 fun testeListas(){ 
-   // usando a função listOf() - lista imutável  
-    val l1 = listOf(2, 4, 6)  
-    var l2 = listOf(8, 10, 12) 
+   // usando a função listOf() - lista imutável, ou seja, não permite adicionar / remolver elementos depois da criação
+    val l1 = listOf(2, 4, 6)  // não pode ser alterada
+    var l2 = listOf(8, 10, 12) // permite mudar a referencia da variável para outra lista 
     println (l1) 
     println (l2) 
 
-    // Porquer consigo fazer l2 virar l1, mas n l1 virar l2? 
+    // O que significa mudar a referência em var? 
+    /*
+     val l1 = listOf(2, 4, 6)  // Lista imutável
+	 var l2 = listOf(8, 10, 12) // Lista imutável, mas `var` permite reatribuição
 
+	 println(l1) // [2, 4, 6]
+	 println(l2) // [8, 10, 12]
+
+	 l2 = listOf(100, 200, 300) // Mudamos a referência de l2 para uma nova lista
+
+	 println(l2) // [100, 200, 300]
+	 */
+    
+    
+    // Porquer consigo fazer l2 virar l1, mas n l1 virar l2? 
 /* 
     l1 = l2 
     println(l1) 
@@ -72,7 +85,7 @@ fun testeListas(){
 
    lista = mutableListOf("1", "2", "3") // Erro: Val cannot be reassigned  
 
-   // Se usarmos val podemos mudar a lista inteira 
+   // Se usarmos var podemos mudar a lista inteira 
 
    var lista: MutableList<String> = mutableListOf("A", "B", "C") 
    lista = mutableListOf("1", "2", "3") // Funciona porque `var` permite mudar a referência 
