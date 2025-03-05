@@ -1,0 +1,119 @@
+// VARIÁVEIS VAL E VAR
+// EX 01 - Declare uma variável altura com o valor 1.75 e uma variável peso com o valor 68. Depois, calcule o IMC 
+// (Índice de Massa Corporal) utilizando a fórmula: IMC = peso / (altura * altura). A variável IMC deve ser do tipo val.
+fun main () {
+    val altura = 1.75
+    val peso = 68
+    val IMC = peso / (altura * altura)
+
+    println("$IMC")
+}
+
+// EX 02 - Crie uma função chamada alterarIdade que recebe a idade de uma pessoa como parâmetro, altera o valor da idade (se for var) 
+// e retorna a nova idade.
+fun alterarIdade(idade: Int): Int {
+    var novaIdade = idade // novaIdade é dada como a idade atual
+    novaIdade += 1  // Alterando a idade atual
+    return novaIdade // retornando a nova idade
+}
+
+fun main() {
+    val idadeAtual = 25 // a variável idade atual é definida como 25
+    println("Nova idade: ${alterarIdade(idadeAtual)}") // A função alterarIdade é chamada passando idadeAtual como argumento.
+}
+// Devo passar idadeAtual como argumento, pois a função usará esse valor para realizar a operação 
+
+// INFERÊNCIA DE TIPOS 
+// EX 03 - Declare uma variável cidade e atribua o nome de uma cidade. Não defina explicitamente o tipo, deixando o Kotlin 
+// fazer a inferência. Depois, tente atribuir a cidade um valor do tipo Int e explique por que isso não seria permitido.
+fun main() {
+    var cidade = "campinas"
+    cidade = 10
+}
+// Isso daria erro, pois a variável cidade foi inferida como String e não pode ser alterada para um valor de tipo Int.
+
+// EX 04 - Crie uma função chamada mostrarNumero que recebe um número qualquer (sem especificar o tipo) e imprime esse número. 
+// Use o tipo Any.
+fun mostrarNumero(numero: Any) {
+    println("O número é: $numero")
+}
+
+fun main() {
+    mostrarNumero(10)  // Passando um número inteiro
+    mostrarNumero(3.14)  // Passando um número decimal
+    mostrarNumero("Texto")  // Passando uma string
+}
+
+// TIPAGEM EXPLÍCITA E TIPO ANY 
+// EX 05 - Declare uma variável chamada detalhes do tipo Any e atribua a ela diferentes valores, como uma String, 
+// um Int e um Double. Imprima os valores para cada tipo.
+fun main() {
+    var detalhe: Any 
+    detalhe = 25
+    println("$detalhe") 
+    detalhe = "Campinas"
+    println("$detalhe") 
+    detalhe = true
+    println("$detalhe") 
+}
+
+// EX 06 - Crie uma função verificarTipo que recebe um parâmetro do tipo Any e imprime o tipo do valor recebido. 
+// Use a função ::class.simpleName para mostrar o tipo.
+fun verificarTipo(tipo: Any) {
+    println("O valor do tipo recebido é: ${tipo::class.simpleName}")
+}
+
+fun main() {
+    verificarTipo("Texto")  
+    verificarTipo(42)  
+    verificarTipo(3.14)  
+}
+// como essas função não retorna nada não preciso definir o seu tipo, o Kotlin já entende que é um tipo Unit 
+// (não retorna nenhum valor, só realiza ações como imprimir)
+
+// OPERAÇÕES MATEMÁTICAS 
+// EX 07 - Crie uma função calcularAreaTriangulo que recebe a base e a altura como parâmetros e retorna a área do triângulo 
+// (A = 0.5 * base * altura).
+fun calcularAreaTriangulo(base: Int, altura: Double): Double {
+    return (0.5 * base * altura)  
+}
+
+fun main() {
+    val base = 5
+    val altura = 5.5  
+    println("O valor da área é: ${calcularAreaTriangulo(base, altura)}")  
+}
+
+// EX 08 - Escreva uma função que recebe o raio de um círculo e calcula a área usando a fórmula A = π * raio^2. 
+// Use a constante pi como valor.
+fun calculaArea(raio: Double, pi: Double): Double {
+    return (pi * Math.pow(raio, 2.0))  
+}
+
+fun main() {
+    val raio = 3.0  
+    val pi = 3.14  
+    println("O valor da área é: ${calculaArea(raio, pi)}")  
+}
+
+// FUNÇÕES COM CONDICIONAL 
+// EX 09 - Crie uma função chamada ehMaiorDeIdade que recebe um valor de idade e retorna true se a idade for maior ou igual a 18 
+// e false caso contrário.
+fun ehMaiorDeIdade(idade: Int): Boolean {
+    return idade >= 18  
+}
+
+fun main() {
+    val idade = 20
+    println("É maior de idade? ${ehMaiorDeIdade(idade)}")  
+}
+
+// EX 10 - Refatore a função ehPar (verifica se um numero é par ou impar) para que ela use um operador ternário ao invés de um if e else para retornar true ou false.
+fun ehPar(n: Int): Boolean {
+    return n % 2 == 0
+}
+
+fun main() {
+    println("É par: ${ehPar(4)}")  
+    println("É par: ${ehPar(5)}")  
+}
