@@ -253,6 +253,13 @@ fun main() {
     println(totalCount)
 }
 
+// Outro jeito que daria certo:
+fun main() {
+    val greenNumbers = listOf(1, 4, 23)
+    val redNumbers = listOf(17, 2)
+    println("${greenNumbers.count() + redNumbers.count()}")
+}
+
 /*
 2- Você tem um conjunto de protocolos suportados pelo seu servidor. Um usuário solicita o uso de um protocolo específico. Complete o programa para verificar se o
 protocolo solicitado é suportado ou não (a variável isSupported deve ser um valor booleano).
