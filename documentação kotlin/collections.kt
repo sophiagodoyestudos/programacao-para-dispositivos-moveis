@@ -297,6 +297,6 @@ fun main() {
 
 fun main() {
     val number2word = mapOf(1 to "um", 2 to "dois", 3 to "três")
-    val n = 2
+    val n = 2 // Isso significa que queremos encontrar a grafia do número 2 no mapa
     println("$n é soletrado como '${number2word[n]}'") // Utilizamos number2word[n] para obter a grafia correspondente ao número n.
 }
