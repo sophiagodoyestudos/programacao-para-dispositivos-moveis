@@ -265,9 +265,12 @@ fun main() {
 protocolo solicitado é suportado ou não (a variável isSupported deve ser um valor booleano).
 Dica: Certifique-se de verificar o protocolo solicitado em maiúsculas. Você pode usar a função .uppercase() para ajudá-lo com isso.
 
+O problema:
+- Você tem um conjunto de protocolos suportados e um usuário solicita um protocolo específico. Seu programa deve verificar se esse protocolo está na lista de suportados.
+
 fun main() {
-    val SUPPORTED = setOf("HTTP", "HTTPS", "FTP")
-    val requested = "smtp"
+    val SUPPORTED = setOf("HTTP", "HTTPS", "FTP") // Conjunto de protocolos suportados
+    val requested = "smtp" // Protocolo solicitado pelo usuário (em minúsculas)
     val isSupported = // Escreva seu código aqui
     println("Suporte para $requested: $isSupported")
 }
@@ -276,6 +279,8 @@ fun main() {
 fun main() {
     val SUPPORTED = setOf("HTTP", "HTTPS", "FTP")
     val requested = "smtp"
+    // Verifica se o protocolo solicitado, convertido para maiúsculas, está no conjunto SUPPORTED
+    // Devo passar para maisúscula porque os "SUPPORTED" estão todos em maiúsculas - para garantir que a comparação seja justa
     val isSupported = requested.uppercase() in SUPPORTED
     println("Suporte para $requested: $isSupported")
 }
