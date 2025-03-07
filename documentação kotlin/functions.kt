@@ -230,6 +230,8 @@ Se um valor não for fornecido na chamada da função, ele automaticamente será
 fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) =
     ((hours * 60) + minutes) * 60 + seconds
 
+// Na versão original, a função precisava receber todos os parâmetros sempre, mesmo que alguns fossem 0. 
+// Agora, com valores padrão, podemos chamar a função de forma mais legível e flexível.
 fun main() {
     println(intervalInSeconds(1, 20, 15)) // 4815 segundos
     println(intervalInSeconds(minutes = 1, seconds = 25)) // 85 segundos
