@@ -209,8 +209,84 @@ fun main() {
     println(emp) // Exibe os detalhes do funcionário após o aumento
 }
 
+// 2 - Declare as data classes adicionais necessárias para que o código abaixo compile corretamente.
+/*
+data class Person(val nome: Nome, val endereco: Endereco, val possuiPet: Boolean = true)
 
+// Escreva aqui as outras data classes necessárias
 
+fun main() {
+    val pessoa = Person(
+        Nome("John", "Smith"),
+        Endereco("123 Fake Street", Cidade("Springfield", "US")),
+        possuiPet = false
+    )
+}
+*/
 
+// Classe para representar o nome da pessoa
+data class Nome(val primeiro: String, val sobrenome: String)
+
+// Classe para representar a cidade
+data class Cidade(val nome: String, val pais: String)
+
+// Classe para representar o endereço completo
+data class Endereco(val rua: String, val cidade: Cidade)
+
+// Classe principal que reúne todas as informações
+data class Person(val nome: Nome, val endereco: Endereco, val possuiPet: Boolean = true)
+
+fun main() {
+    val pessoa = Person(
+        Nome("John", "Smith"),
+        Endereco("123 Fake Street", Cidade("Springfield", "US")),
+        possuiPet = false
+    )
+
+    println(pessoa)
+}
+
+// 3 - Para testar seu código, você precisa de um gerador que crie funcionários aleatórios.
+// Defina uma classe chamada GeradorFuncionarioAleatorio com:
+// Uma lista fixa de nomes possíveis (dentro do corpo da classe).
+// Um salário mínimo e um salário máximo (no cabeçalho da classe).
+// Dentro da classe, crie a função gerarFuncionario() para gerar um funcionário com um nome aleatório e um salário aleatório dentro dos limites especificados.
+// Use a função random() para escolher um nome da lista e Random.nextInt(from, until) para gerar um salário aleatório.
+// A função main() deve demonstrar o uso dessa classe.
+/*
+import	kotlin.random.Random
+data	class	Employee(val	name:	String,	var	salary:	Int)
+ //	Write	your	code	here
+ fun	main()	{
+     val	empGen	=	RandomEmployeeGenerator(10,	30)
+     println(empGen.generateEmployee())
+     println(empGen.generateEmployee())
+     println(empGen.generateEmployee())
+     empGen.minSalary	=	50
+     empGen.maxSalary	=	100
+     println(empGen.generateEmployee())
+ }
+ */
+
+ import	kotlin.random.Random
+ data	class	Employee(val	name:	String,	var	salary:	Int)
+ 
+ class	RandomEmployeeGenerator(var	minSalary:	Int,	var	maxSalary:	Int)	{
+     val	names	=	listOf("John",	"Mary",	"Ann",	"Paul",	"Jack",	"Elizabeth")
+     fun	generateEmployee()	=
+     Employee(names.random(),
+         Random.nextInt(from	=	minSalary,	until	=	maxSalary))
+ }
+ 
+ fun	main()	{
+     val	empGen	=	RandomEmployeeGenerator(10,	30)
+     println(empGen.generateEmployee())
+     println(empGen.generateEmployee())
+     println(empGen.generateEmployee())
+     empGen.minSalary	=	50
+     empGen.maxSalary	=	100
+     println(empGen.generateEmployee())
+ }
+ 
 
 
