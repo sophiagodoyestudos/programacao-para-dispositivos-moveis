@@ -417,3 +417,54 @@ fun main() {
 }
 
 // EXERCÍCIOS
+// 1 - Você tem uma lista de ações suportadas por um serviço web, um prefixo comum para todas as requisições e um ID de um recurso específico. 
+// Para solicitar o título de uma ação sobre o recurso com ID: 5, você precisa criar a seguinte URL:
+/*
+fun main() {
+    val actions = listOf("title", "year", "author")
+    val prefix = "https://example.com/book-info"
+    val id = 5
+    val urls = // Escreva seu código aqui
+    println(urls)
+}
+*/
+
+fun main() {
+    val actions = listOf("title", "year", "author") // Lista de ações suportadas
+    val prefix = "https://example.com/book-info"  // Prefixo base da URL
+    val id = 5  // ID do recurso específico
+
+    // Usando map() para transformar cada ação em uma URL completa
+    // O método map percorre a lista actions e para cada elemento (action), cria uma string no formato:
+    // EX: "https://example.com/book-info/5/author"
+    val urls = actions.map { action -> "$prefix/$id/$action" }
+
+    println(urls)  // Exibe a lista de URLs geradas
+}
+
+// 2 - Escreva uma função que receba um valor do tipo Int e uma ação (uma função do tipo () -> Unit), que então repete a ação o número especificado de vezes.
+// Em seguida, use essa função para imprimir "Hello" 5 vezes.
+/*
+fun repetirN(vezes: Int, acao: () -> Unit) {
+    // Escreva seu código aqui
+}
+
+fun main() {
+    // Escreva seu código aqui
+}
+*/
+
+// Função que repete uma ação 'vezes' vezes
+fun repetirN(vezes: Int, acao: () -> Unit) {
+    for (i in 1..vezes) { // Repete a ação 'vezes' vezes
+        acao() // Executa a ação recebida como parâmetro
+    }
+}
+
+fun main() {
+    // Chama a função repetirN passando 5 e uma ação que imprime "Hello"
+    repetirN(5) {
+        println("Hello")
+    }
+}
+
