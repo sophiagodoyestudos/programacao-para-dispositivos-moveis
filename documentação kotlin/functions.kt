@@ -223,6 +223,10 @@ fun main () {
  }
 */
 
+// A função original recebia três parâmetros obrigatórios: hours, minutes e seconds. 
+// Isso significa que toda vez que a função era chamada, era necessário fornecer os três valores, mesmo que fossem 0.
+// Agora, os parâmetros hours, minutes e seconds têm valores padrão (0).
+Se um valor não for fornecido na chamada da função, ele automaticamente será 0.
 fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) =
     ((hours * 60) + minutes) * 60 + seconds
 
