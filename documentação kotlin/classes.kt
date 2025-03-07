@@ -183,7 +183,31 @@ cópia e pelo que você fizer com ela.
 */
 
 // EXERCÍCIOS 
+// 1 - Defina uma data class chamada Funcionario com duas propriedades:
+// nome: Representa o nome do funcionário.
+// salario: Representa o salário do funcionário e deve ser mutável para permitir aumentos.
+// A função main() deve demonstrar o uso dessa classe, criando um funcionário chamado "Mary" com salário 20, aumentando seu salário em 10 e imprimindo os resultados.
+/*
+ //	Write	your	code	here
+ fun	main()	{
+ val	emp	=	Employee("Mary",	20)
+ println(emp)
+ emp.salary	+=	10
+ println(emp)
+ }
+ */
 
+ // Definição da data class Funcionario com nome imutável e salário mutável
+data class Funcionario(val nome: String, var salario: Int)
+
+fun main() {
+    val emp = Funcionario("Mary", 20) // Cria um funcionário chamado Mary com salário 20
+    println(emp) // Exibe os detalhes iniciais do funcionário
+
+    emp.salario += 10 // Aumenta o salário em 10
+
+    println(emp) // Exibe os detalhes do funcionário após o aumento
+}
 
 
 
