@@ -300,3 +300,129 @@ fun main() {
     val n = 2 // Isso significa que queremos encontrar a grafia do número 2 no mapa
     println("$n é soletrado como '${number2word[n]}'") // Utilizamos number2word[n] para obter a grafia correspondente ao número n.
 }
+
+// EXERCÍCIOS FEITOS POR MIM 
+/*
+Questão: Qual a diferença entre listas somente leitura (List) e listas mutáveis (MutableList) em Kotlin?
+Dica: Explique como cada uma armazena valores, se é possível ou não adicionar e remover itens após a criação.
+- List: É uma coleção somente leitura, ou seja, não é possível modificar seus elementos após a criação (adicionar, remover ou alterar).
+- MutableList: É uma coleção mutável, ou seja, permite que seus elementos sejam alterados, com a capacidade de adicionar, remover ou alterar itens após a criação.
+
+Questão: Para que serve a função .count() em listas, conjuntos e mapas?
+Dica: Mencione o que ela retorna e em que tipo de coleções pode ser utilizada.
+- A função .count() retorna o número de elementos em uma coleção. Pode ser usada em listas, conjuntos e mapas. Para listas e conjuntos, retorna o número de elementos, enquanto em um mapa, retorna o número de pares chave-valor.
+
+Questão: Explique a diferença entre listOf(), setOf() e mapOf() em Kotlin.
+Dica: Cite as principais características de cada tipo de coleção.
+- listOf(): Cria uma lista, que pode ter elementos duplicados e é ordenada.
+- setOf(): Cria um conjunto, que não permite elementos duplicados e não garante a ordem dos elementos.
+- mapOf(): Cria um mapa de chave-valor, onde cada chave é única, e os valores podem ser acessados pelas chaves.
+
+Questão: Como podemos transformar uma lista mutável em uma “visão somente leitura”?
+Dica: Mencione o uso de List, Set ou Map em vez de suas versões mutáveis.
+- Para transformar uma lista mutável em somente leitura, podemos usar a função .toList() para obter uma cópia imutável da lista original.
+
+Questão: Se quisermos verificar se um valor existe em um mapa, como podemos fazer isso?
+Dica: Explique o uso de .containsKey() e o operador in.
+- Usamos o método .containsKey() para verificar se uma chave existe no mapa, ou o operador in, que também pode ser usado para verificar a existência de uma chave no mapa.
+
+Exercício: Crie uma lista somente leitura com os nomes de três cidades e imprima na tela o primeiro e o último nome dessa lista.
+fun main() {
+    // Crie aqui sua lista somente leitura (listOf())
+    // Imprima o primeiro e o último nome
+}
+Dica: Use as funções .first() e .last().
+*/
+fun main() {
+    val listaLeitura = listOf("Sophia", "Joao", "Alicia")
+    println("O primeiro nome é ${listaLeitura.first()} e o último nome é ${listaLeitura.last()}")
+}
+
+/*
+Exercício: Declare uma lista mutável de inteiros com cinco números e:
+a) Adicione mais dois números a essa lista.
+b) Remova um número qualquer.
+c) Imprima a lista final.
+
+fun main() {
+    // Declare a lista mutável
+    // Adicione e remova números
+    // Imprima a lista atualizada
+}
+*/
+fun main() {
+    val listaMutavel: MutableList<Int> = mutableListOf(1, 2, 3, 4, 5)
+    listaMutavel.add(6)  
+    listaMutavel.add(7)  
+    listaMutavel.remove(5)  
+    println(listaMutavel)  
+}
+
+/*
+Exercício: Crie um conjunto somente leitura (setOf) com três nomes de frutas.
+a) Imprima quantos itens ele tem usando .count().
+b) Verifique se uma determinada fruta está presente no conjunto usando o operador in.
+fun main() {
+    // Crie o conjunto
+    // Imprima o total de itens
+    // Verifique a presença de uma fruta
+}
+*/
+fun main() {
+    val lendoFruta = setOf("laranja", "maca", "uva")
+    println("Existem ${lendoFruta.count()} nessa lista")
+    println("maca" in lendoFruta)
+}
+
+/*
+Exercício: Declare um conjunto mutável com pelo menos quatro cores (strings).
+a) Adicione uma nova cor.
+b) Remova outra cor.
+c) Imprima o conjunto final.
+
+fun main() {
+    // Conjunto mutável
+    // Adicione e remova cores
+    // Imprima o resultado
+}
+*/
+fun main() {
+    val listaCores = mutableSetOf("rosa", "azul", "branco", "preto")
+    listaCores.add("verde")
+    listaCores.remove("azul")
+    println(listaCores)
+}
+
+/*
+Exercício: Crie um mapa somente leitura que relacione três marcas de carro a seus respectivos valores (inteiros).
+a) Imprima todos os valores usando 
+b) Verifique se existe uma certa chave (marca) no mapa 
+fun main() {
+    // Crie o mapa
+    // Imprima os valores
+    // Verifique se existe uma chave específica
+}
+*/
+fun main() {
+    val mapaCarros = mapOf("corolla" to 1000, "renagade" to 2000, "nissan" to 3000)
+    println(mapaCarros)
+    println("corolla" in mapaCarros)
+}
+
+/*
+Exercício: Declare um mapa mutável em que as chaves sejam nomes de produtos e os valores sejam seus preços (inteiros).
+a) Adicione um novo produto ao mapa.
+b) Remova um produto existente.
+c) Imprima a quantidade de pares chave-valor usando .count().
+fun main() {
+    // Mapa mutável
+    // Adicione e remova produtos
+    // Imprima a quantidade total
+}
+*/
+fun main() {
+    val produtos: MutableMap<String, Int> = mutableMapOf("roupa" to 40, "sapato" to 60, "maquiagem" to 100) 
+    produtos["computador"] = 500
+    produtos.remove("roupa")
+    println("A quantidade total de elementos é: ${produtos.count()}")
+}
