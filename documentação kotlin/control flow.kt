@@ -305,8 +305,8 @@ fun main() {
     while (pizzaSlices < 7) {
         pizzaSlices++
         println("Só há $pizzaSlices fatia(s) de pizza :(")
-    }
-    pizzaSlices++
+    } // else só pode ser utilizado na condição do if 
+    pizzaSlices++ // aqui resultamos em 8 fatias
     println("Agora temos $pizzaSlices fatias de pizza. Oba! Temos uma pizza inteira! :D")
 }
 
@@ -354,13 +354,136 @@ fun	main()	{
 }
 */
 
-fun main() {
-    val words = listOf("dinossauro", "limusine", "revista", "língua")
+ fun	main()	{
+     val	words	=	listOf("dinosaur",	"limousine",	"magazine",	"language")
+     for	(w	in	words)	{ // w é uma variável que eu criei para apontar para cada elemento da lista
+         if	(w.startsWith("l"))
+         println(w)
+    }
+ }
+// startsWith("l", ignoreCase = true): verifica se a palavra começa com "l", ignorando se a letra está maiúscula ou minúscula.
 
-    for (w in words) {
-        if (w.startsWith("l", ignoreCase = true)) {
-            println(w)
-        }
+// EXERCÍCIOS FEITOS POR MIM 
+/*
+Questão: Qual a diferença entre usar if/else como declaração e como expressão em Kotlin?
+Dica: Como declaração, não retorna valor; como expressão, o resultado do if pode ser atribuído a uma variável.
+- 
+
+Questão: Explique o que é o when em Kotlin e quando ele pode ser uma opção melhor do que vários if/else.
+Dica: Fale sobre legibilidade do código, facilidade de adicionar casos extras e cobertura de casos.
+- O when é uma expressão de múltiplas opções em Kotlin, que pode ser usada como uma alternativa mais legível ao uso de várias instruções if/else. Ele pode ser mais eficiente e limpo em situações com múltiplos casos.
+- O when é mais útil quando se tem várias condições a serem verificadas para um único valor, e ele permite adicionar facilmente mais casos sem comprometer a legibilidade.
+
+Questão: Em que situações podemos usar um when sem um “sujeito” (isto é, sem (obj) ao lado)? Dê um exemplo.
+Dica: Lembre-se do caso em que avaliamos várias expressões booleanas em vez de comparar contra um único valor.
+- Um when sem sujeito pode ser usado quando se deseja avaliar várias expressões booleanas ou condições. Em vez de verificar uma única variável ou valor, você pode usar condições diretamente dentro do when.
+
+Questão: O que são intervalos (ranges) em Kotlin e para que servem? Dê exemplos de pelo menos dois operadores de intervalo.
+Dica: Mostre exemplos com .., ..<, downTo, e step.
+- Intervalos em Kotlin representam um conjunto de valores em uma sequência. Eles são úteis para realizar verificações e iterações em um conjunto de números ou caracteres.
+
+Questão: Qual a diferença entre um while e um do-while?
+Dica: Fale sobre a ordem de execução e se o bloco é executado ao menos uma vez ou não.
+- while: O loop while executa o bloco de código enquanto a condição for verdadeira. Ele verifica a condição antes de executar o código, então pode não ser executado nenhuma vez se a condição for falsa desde o início.
+- do-while: O loop do-while sempre executa o código ao menos uma vez, pois verifica a condição após a execução do bloco.
+
+Exercício: Crie um programa que leia um valor inteiro de 1 a 7 e use uma expressão when para imprimir o dia da semana correspondente 
+(por exemplo, 1 -> “Segunda-feira”, 2 -> “Terça-feira” etc.).
+a) Se o valor não estiver entre 1 e 7, imprima “Dia inválido”.
+*/
+fun main() {
+    val dia = readLine()?.toIntOrNull() ?: 0
+    when (dia) {
+        1 -> println("Segunda-feira")
+        2 -> println("Terça-feira")
+        3 -> println("Quarta-feira")
+        4 -> println("Quinta-feira")
+        5 -> println("Sexta-feira")
+        6 -> println("Sábado")
+        7 -> println("Domingo")
+        else -> println("Dia inválido")
     }
 }
-// startsWith("l", ignoreCase = true): verifica se a palavra começa com "l", ignorando se a letra está maiúscula ou minúscula.
+
+/*
+Exercício: Usando intervalos e um loop for, imprima todos os números de 10 a 1 em ordem decrescente.
+Dica: Use 10 downTo 1.
+*/
+for (i in 10 downTo 1) {
+    println(i)
+}
+
+/*
+Exercício: Crie um programa que, usando um loop for e step, imprima apenas os números pares de 0 a 20.
+Dica: Use 0..20 step 2.
+*/
+fun main() {
+    for (number in 0..20 step 2) {
+        println(number)
+    }
+}
+
+/*
+Exercício: Declare uma variável contador começando em 10. Use um loop while para continuar decrementando contador até que ele seja 0. 
+A cada iteração, imprima o valor atual de contador.
+Dica: Lembre de decrementar (--) o contador dentro do loop.
+*/
+var contador = 10
+while (contador > 0) {
+    println(contador)
+    contador--
+}
+
+
+/*
+Exercício: Escreva um programa que peça um valor de entrada para o usuário (por exemplo, usando readLine()?.toIntOrNull()).
+a) Use um loop do-while para somar todos os valores digitados até que o usuário digite 0.
+b) Quando o usuário digitar 0, exiba a soma total.
+Dica: Como se trata de um laço que executa ao menos uma vez, o do-while é apropriado.
+*/
+fun main() {
+    var soma = 0
+	var numero: Int
+	do {
+        println("Digite um número:")
+        numero = readLine()?.toIntOrNull() ?: 0
+        soma += numero
+	} while (numero != 0)
+	println("Soma total: $soma")
+}
+
+
+/*
+Exercício: Crie uma lista com algumas strings, por exemplo: val fruits = listOf("apple", "banana", "cherry", "avocado"). 
+Use um loop for e um if para imprimir apenas as frutas que não contêm a letra “a”.
+Dica: Você pode usar !fruta.contains("a") no if.
+*/
+fun main() {
+    val fruits = listOf("apple", "banana", "cherry", "avocado")
+	for (fruit in fruits) {
+   		if (!fruit.contains("a")) {
+        	println(fruit)
+    	}
+	}
+}
+
+/*
+Exercício: Escreva um programa que simule um menu de opções usando o when. As opções podem ser:
+1 -> "Iniciar jogo"
+2 -> "Carregar jogo"
+3 -> "Sair"
+Dica: Caso o usuário informe uma opção inválida, mostre “Opção inválida”.
+*/
+fun main() {
+    println("Escolha uma opção:")
+    println("1 -> Iniciar jogo")
+    println("2 -> Carregar jogo")
+    println("3 -> Sair")
+    val opcao = readLine()?.toIntOrNull() ?: 0
+    when (opcao) {
+        1 -> println("Iniciar jogo")
+        2 -> println("Carregar jogo")
+        3 -> println("Sair")
+        else -> println("Opção inválida")
+    }
+}
