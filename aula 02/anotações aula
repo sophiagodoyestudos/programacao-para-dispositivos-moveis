@@ -32,7 +32,7 @@ fun testeListas(){
     // O que significa mudar a referência em var? 
     /*
      val l1 = listOf(2, 4, 6)  // Lista imutável
-	 var l2 = listOf(8, 10, 12) // Lista imutável, mas `var` permite reatribuição
+	 var l2 = listOf(8, 10, 12) // Lista mutável, mas `var` permite reatribuição
 
 	 println(l1) // [2, 4, 6]
 	 println(l2) // [8, 10, 12]
