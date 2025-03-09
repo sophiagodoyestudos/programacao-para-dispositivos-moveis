@@ -226,7 +226,7 @@ fun main () {
 // A função original recebia três parâmetros obrigatórios: hours, minutes e seconds. 
 // Isso significa que toda vez que a função era chamada, era necessário fornecer os três valores, mesmo que fossem 0.
 // Agora, os parâmetros hours, minutes e seconds têm valores padrão (0).
-Se um valor não for fornecido na chamada da função, ele automaticamente será 0.
+// Se um valor não for fornecido na chamada da função, ele automaticamente será 0.
 fun intervalInSeconds(hours: Int = 0, minutes: Int = 0, seconds: Int = 0) =
     ((hours * 60) + minutes) * 60 + seconds
 
@@ -468,3 +468,174 @@ fun main() {
     }
 }
 
+// EXERCÍCIOS FEITOS POR MIM 
+/*
+Questão: Qual é a sintaxe básica para declarar uma função em Kotlin e como se especifica o tipo de retorno?
+Dica: Explique o uso de fun, parâmetros entre parênteses e o : TipoRetorno.
+- A sintaxe básica para declarar uma função em Kotlin usa a palavra-chave fun, seguida pelo nome da função, os parâmetros entre parênteses e o tipo de retorno após :.
+
+Questão: O que são argumentos nomeados em Kotlin? Dê um exemplo de como eles podem tornar o código mais legível.
+Dica: Mostre como chamar a função, invertendo a ordem dos parâmetros e especificando explicitamente nomeDoParametro = valor.
+- Os argumentos nomeados permitem especificar o nome do parâmetro ao chamar uma função, tornando o código mais legível.
+
+Questão: Explique o que são valores padrão de parâmetros em uma função. Em que casos eles podem ser úteis?
+Dica: Destaque como isso evita sobrecarga (overload) de funções e torna as chamadas mais claras.
+- Os valores padrão permitem definir um valor para um parâmetro caso ele não seja informado.
+
+Questão: O que são funções de expressão única em Kotlin? Em que situações elas podem ser vantajosas?
+Dica: Fale sobre concisão do código e inferência de tipo de retorno.
+- São funções escritas em uma única linha usando a sintaxe =, sem {} e return.
+
+Questão: Qual é a diferença entre declarar explicitamente o retorno de uma função como Unit e não declarar o tipo de retorno em Kotlin?
+Dica: Lembre-se de que Unit é o análogo a “nenhum valor útil” e que especificar ou não é opcional.
+- Ambos indicam que a função não retorna um valor útil, mas Unit pode ser especificado explicitamente.
+
+Questão: Explique o que são expressões lambda em Kotlin e dê um exemplo simples.
+Dica: Descreva a sintaxe básica { parametros -> corpo } e como invocar.
+- Uma lambda é uma função anônima com a sintaxe { parâmetros -> corpo }.
+
+Questão: O que são tipos de função em Kotlin? Dê um exemplo de declaração de variável que aceite uma função como valor.
+Dica: Mostre algo como val nomeVariavel: (TipoParametro) -> TipoRetorno = { parametro -> ... }.
+- Tipos de função permitem armazenar funções em variáveis.
+
+Questão: Como funciona o retorno antecipado de uma função em Kotlin? Por que isso pode ser útil?
+Dica: Fale sobre o uso de return dentro do corpo da função para sair antes de completar todas as instruções.
+- O return pode ser usado para sair de uma função antes da execução completa.
+
+Questão: O que é a sintaxe de trailing lambda e em que casos ela pode ser aplicada?
+Dica: Mostre quando a expressão lambda é passada como último parâmetro de uma função e pode ser movida para fora dos parênteses.
+- Quando uma função recebe uma lambda como último parâmetro, pode-se movê-la para fora dos parênteses.
+
+Exercício: Crie uma função chamada multiply que receba dois valores inteiros x e y, e retorne o produto (multiplicação) deles.
+- Chame a função no main imprimindo o resultado de multiply(3, 4)
+*/
+fun multiply (x: Int, y: Int): Int {
+    return x * y
+}
+
+fun main(){
+    println(multiply(3,4))
+}
+
+
+/*
+Exercício: Reescreva a função multiply do exercício anterior como uma função de expressão única.
+- Mantenha a assinatura fun multiply(x: Int, y: Int): Int.
+*/
+fun multiply (x: Int, y: Int): Int = x * y
+
+fun main(){
+    println(multiply(3,4))
+}
+
+/*
+Exercício: Crie uma função introduceYourself com dois parâmetros: name (String) e age (Int, com valor padrão igual a 0).
+- Se age não for especificado, imprima “Meu nome é X e eu prefiro não dizer minha idade.”
+- Caso contrário, imprima “Meu nome é X e eu tenho Y anos.”
+*/
+fun introduceYourself(name: String, age: Int = 0) {
+    if (age == 0) {
+        println("Meu nome é $name e prefiro não dizer minha idade.")
+    } else {
+        println("Meu nome é $name e tenho $age anos.")
+    }
+}
+
+fun main() {
+    introduceYourself("Ana")
+    introduceYourself("Carlos", 25)
+}
+
+/*
+Exercício: Converta a função abaixo em uma expressão lambda armazenada em uma variável:
+fun doubleString(text: String): String {
+    return text.repeat(2)
+}
+Use a sintaxe { text: String -> ... } e teste chamando a lambda diretamente.
+*/
+val doubleString: (String) -> String = { text -> text.repeat(2) }
+
+fun main() {
+    println(doubleString("Kotlin")) // KotlinKotlin
+}
+
+/*
+Exercício: Crie uma função chamada executeNTimes que receba dois parâmetros:
+- n: quantidade de vezes que uma ação será executada (Int)
+- action: uma função do tipo () -> Unit
+- Dentro de executeNTimes, repita action() exatamente n vezes.
+- No main, invoque executeNTimes(3) { println("Hello!") }.
+*/
+fun executeNTimes(n: Int, action: () -> Unit) {
+    repeat(n) { action() }
+}
+
+fun main() {
+    executeNTimes(3) { println("Hello!") }
+}
+
+/*
+Exercício: Implemente uma função maxValueOperation que retorna uma lambda:
+fun maxValueOperation(condition: String): (Int, Int) -> Int {
+    // ...
+}
+Se condition for "sum", retorne uma lambda que receba dois valores e retorne a soma deles.
+Se condition for "mul", retorne uma lambda que receba dois valores e retorne a multiplicação.
+Caso contrário, retorne uma lambda que retorne sempre 0.
+Teste chamando algo como val operation = maxValueOperation("sum"); println(operation(3, 5)).
+*/
+fun maxValueOperation(condition: String): (Int, Int) -> Int {
+    return when (condition) {
+        "sum" -> { a, b -> a + b }
+        "mul" -> { a, b -> a * b }
+        else -> { _, _ -> 0 }
+    }
+}
+
+fun main() {
+    val operation = maxValueOperation("sum")
+    println(operation(3, 5)) // 8
+}
+
+/*
+Exercício: Dada a lista de números val nums = listOf(1, 3, -2, 5, -1, 7), use as funções filter e map com expressões lambda para:
+- Obter apenas os valores negativos e imprimir a lista resultante.
+- Dobrar todos os valores positivos e imprimir a lista resultante.
+*/
+fun main() {
+    val nums = listOf(1, 3, -2, 5, -1, 7)
+
+    val negativos = nums.filter { it < 0 }
+    println(negativos) 
+
+    val dobrados = nums.map { if (it > 0) it * 2 else it }
+    println(dobrados) 
+}
+
+/*
+Exercício (Desafio): Crie uma função buildGreeting que receba um langCode: String e retorne uma lambda do tipo (String) -> String.
+- Se langCode for "pt", retorne uma lambda que receba um nome e retorne “Olá, NOME!”.
+- Se langCode for "en", retorne uma lambda que receba um nome e retorne “Hello, NAME!”.
+- Caso contrário, retorne uma lambda que receba um nome e retorne “Hi, NAME!”.
+- No main, teste essa função chamando algo como:
+val greetPT = buildGreeting("pt")
+println(greetPT("Carlos"))
+
+val greetEN = buildGreeting("en")
+println(greetEN("Jane"))
+*/
+fun buildGreeting(langCode: String): (String) -> String {
+    return when (langCode) {
+        "pt" -> { name -> "Olá, $name!" }
+        "en" -> { name -> "Hello, $name!" }
+        else -> { name -> "Hi, $name!" }
+    }
+}
+
+fun main() {
+    val greetPT = buildGreeting("pt")
+    println(greetPT("Carlos")) // Olá, Carlos!
+
+    val greetEN = buildGreeting("en")
+    println(greetEN("Jane")) // Hello, Jane!
+}
