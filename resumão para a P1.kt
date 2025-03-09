@@ -69,6 +69,31 @@ fun main() {
     println("O valor do comprimento da circunferência é: ${calcCompCircunf(pi, r)}")
 }
 
+/*
+List (listas): 
+- As listas armazenam valores ordenados e podem conter elementos repetidos. 
+- Elementos vão sempre para o final da lista e posso aplicar ordenacao nos elementos  
+- listOf() - lista imutável - não é possível adicionar e remolver elementos, apenas apontar para outra lista se for var 
+- mutableListOf - lista mutável - consigo adicionar, remolver elementos e apontar para outra lista se for var 
+- Listas polimórficas - são listas que podem armazenar elementos de diferentes tipo (String com Int com Double com Char)
+
+Sets (conjuntos):
+- Os Sets armazenam elementos únicos e não garantem ordem.  
+- setOf(): conjuntos imutáveis - não permite adicionar, remolver e nem valores repetidos 
+- mutableSetOf() - conjuntos mutáveis - permite adicionar e remover elementos, mas continua sem aceitar valores repetidos
+
+Maps (dicionários): 
+- Os Maps armazenam dados em pares chave-valor, onde:
+- A chave (Key) é um identificador único. 
+- O valor (Value) é a informação associada a essa chave. 
+- mapOf(): mapa imutável - não pode ser alterado após a criação (não é possível adicionar e remolver elemetos) 
+- mutableMapOf()): mapa mutável - pode ser modificado, permitindo adicionar ou remover pares. 
+
+- Se a lista, set ou maps for definida como var é possível apontar para outra lista, set ou maps, mas
+se for definida como val não é possível 
+- Ser list, set e maps val e mutable não impede de adicionar e remolver elementos
+*/
+
 // LISTAS 
 // LISTOF()
 // Se a lista for declara como:
@@ -113,30 +138,6 @@ fun main() {
    lista = mutableListOf("1", "2", "3") 
    println(lista)
 } 
-
-/*
-List (listas): 
-- As listas armazenam valores ordenados e podem conter elementos repetidos. 
-- Elementos vão sempre para o final da lista e posso aplicar ordenacao nos elementos  
-- listOf() - lista imutável - não é possível adicionar e remolver elementos, apenas apontar para outra lista se for var 
-- mutableListOf - lista mutável - consigo adicionar, remolver elementos e apontar para outra lista se for var 
-- Listas polimórficas - são listas que podem armazenar elementos de diferentes tipo (String com Int com Double com Char)
-
-Sets (conjuntos):
-- Os Sets armazenam elementos únicos e não garantem ordem.  
-- setOf(): conjuntos imutáveis - não permite adicionar, remolver e nem valores repetidos 
-- mutableSetOf() - conjuntos mutáveis - permite adicionar e remover elementos, mas continua sem aceitar valores repetidos
-
-Maps (dicionários): 
-- Os Maps armazenam dados em pares chave-valor, onde:
-- A chave (Key) é um identificador único. 
-- O valor (Value) é a informação associada a essa chave. 
-- mapOf(): mapa imutável - não pode ser alterado após a criação (não é possível adicionar e remolver elemetos) 
-- mutableMapOf()): mapa mutável - pode ser modificado, permitindo adicionar ou remover pares. 
-
-- Se a lista, set ou maps for definida como var é possível apontar para outra lista, set ou maps, mas
-se for definida como val não é possível 
-*/
 
 // SETS
 // SETOF()
