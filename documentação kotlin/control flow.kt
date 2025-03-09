@@ -312,15 +312,26 @@ fun main() {
 
 fun main() {
     var pizzaSlices = 0
-    pizzaSlices++
+    pizzaSlices++ // contamos a fatia
     do {
-        println("Só há $pizzaSlices fatia(s) de pizza :(")
-        pizzaSlices++
-    } while (pizzaSlices < 8)
+        println("Só há $pizzaSlices fatia(s) de pizza :(") // Ele imprime a quantidade de fatias de pizza disponíveis.
+        pizzaSlices++ // Depois de imprimir, aumenta o número de fatias
+    } while (pizzaSlices < 8) // O while (pizzaSlices < 8) verifica se a pizza ainda está incompleta (menos de 8 fatias).
 
     println("Agora temos $pizzaSlices fatias de pizza. Oba! Temos uma pizza inteira! :D")
 }
 
+// Outro jeito de fazer:
+fun main() {
+    var pizzaSlices = 0
+    do {
+        pizzaSlices++ 
+        println("Só há $pizzaSlices fatia(s) de pizza :(") 
+    } while (pizzaSlices < 8) 
+
+    println("Agora temos $pizzaSlices fatias de pizza. Oba! Temos uma pizza inteira! :D")
+} 
+	
 /*
 2 - Escreva um programa que simula o jogo FizzBuzz. O programa deve imprimir números de 1 a 100, substituindo:
 - Números divisíveis por 3 por "fizz"
@@ -344,6 +355,20 @@ fun main() {
         )
     }
 }
+
+// Outro jeito de fazer
+fun main() {
+    for (number in 1..100) {
+        println(
+            when {
+                number % 3 == 0 && number % 5 == 0 -> "fizzbuzz"
+                number % 3 == 0 -> "fizz"
+                number % 5 == 0 -> "buzz"
+                else -> "$number"
+            }
+        )
+    }
+} 
 
 /*
 3 - Você tem uma lista de palavras. Use um for e um if para imprimir apenas as palavras que começam com a letra "l".
