@@ -1,0 +1,202 @@
+// Android Studio
+
+// Conferir aula 06 no meu Onedrive também
+
+// PACOTE ONDE A CLASS MAINACTIVITY SE ENCONTRA
+/*
+O que é um Pacote?
+- Um pacote (package) é um conjunto de arquivos organizados dentro do projeto
+
+EX:
+Imagine que você tem várias partes do seu app:
+1. Uma parte para telas (ui)
+2. Outra para banco de dados (database)
+3. Outra para funções auxiliares (utils)
+
+Você pode organizar assim:
+    package com.meuapp.ui
+    package com.meuapp.database
+    package com.meuapp.utils
+- Isso facilita a organização e a busca de arquivos no projeto
+ */
+
+// Essa linha diz ao Kotlin que essa classe (MainActivity) pertence a um grupo específico de arquivos chamado br.com.ibm.activitylifeacycle
+package br.com.ibm.activitylifeacycle
+
+// SEÇÃO DE IMPORTAÇÕES DE CLASSES, FUNÇÕES E ANOTAÇÕES
+// O Android Studio e o Kotlin organizam as importações automaticamente, trazendo apenas o que é necessário
+/*
+Como diferenciar uma classe de uma função de uma anotação?
+1) Classe
+- começam com letra maiúscula
+- representam estruturas principais no código
+- ex: BBundle, Log, ComponentActivity, Scaffold, Text, Modifier, ActivityLifeacycleTheme
+
+2) Funções
+- começam com letras minúsculas
+- excutam ações específicas
+- ex: setContent, enableEdgeToEdge, fillMaxSize, padding
+
+3) Anotações
+- começam com maiúsuclas e são coloridas
+- são marcadores especiais usados para fornecer informações extras ao compilador ou ao código
+- modificam o comportamento de funções, classes e propriedades sem alterar diretamente seu código
+- ex: Composable, Preview
+ */
+
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import br.com.ibm.activitylifeacycle.ui.theme.ActivityLifeacycleTheme
+
+// Quantos métodos e quantos atributos tem a MainActivity = 3 métodos e 2 atributos
+// tudo o que não é método é atributo
+// Os métodos ficam em baixo dos atribuitos e o atributos em baixo das classes
+// A classe só tem método e comportamento
+// Tudo o que está no topo são os atributos e os métodos vem em baixo
+
+// CRIANDO UMA CLASSE QUE GERENCIA O CICLO DE UMA ACTIVITY
+// MainActivity é uma classe que herda (:) de ComponentActivity, que é uma classe do Android para gerenciar telas
+class MainActivity : ComponentActivity() {
+    val TAG = "MainActivity" // constante que armazena o nome da Activity
+    var estado = "" // guarda o estado da tela durante a utilização do aplicativo (STARTED, PAUSED, STOPPED, etc.)
+
+    // CRIANDO O MÉTODO ONCREATE()
+    // Ele é chamado quando a Activity é criada, ou seja, quando o usuário abre a tela do aplicativo
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            ActivityLifeacycleTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+
+        // DEFININDO O ESTADO DA ACTIVITY
+        // No final da execução do onCreate (método) o estado da tela será criada (CREATED)
+        /*
+        CRIADA não significa APARENTE
+        - ou se4ja, quando uma Activity no Android é CRIADA (onCreate()), isso não significa que ela já está visível para o usuário
+        1. Criada (onCreate()) → A Activity foi inicializada, mas pode ainda não estar visível na tela
+📌      2. Aparente (onResume()) → A Activity está visível e o usuário pode interagir com ela
+         */
+        estado = "CREATED" // Atualiza a variável estado para indicar que a tela foi criada
+        Log.i(TAG, estado) // Registra um log no Logcat mostrando que a Activity foi criada
+
+        /*
+        O que é o LogCat?
+        - O Logcat é uma ferramenta de depuração do Android Studio que exibe mensagens de log do sistema e dos aplicativos em tempo real
+
+        O que é log?
+        - log é uma ferramenta que ajuda a identificar problemas no código. Ele registra eventos, mensagens e erros que ocorrem durante a execução de um aplicativo
+        - nesse código usamos: Log.i(TAG, estado)
+
+        O que é a TAG?
+        - é um nome identificador para facilitar a filtragem no Logcat
+        - nesse programa usamos o nome da TAG como: val TAG = "MainActivity"
+        */
+    }
+
+    // TIPOS DE MÉTODOS
+    /*
+    Existem dois tipos de métodos os que vc cria:
+    1️. Método Criado pelo Programador → Um método que o desenvolvedor cria manualmente
+    2. Método Sobrescrito (override) → Métodos já existentes no Android que podem ser modificados para adicionar comportamento personalizado
+    */
+
+    // Método criado pelo programador (por mim)
+    // Esse método não faz parte do ciclo de vida da Activity, foi criado pelo programador para ser usado quando necessário
+    fun calcularAreaQuadrada(l: Int): Int {
+        return l * l;
+    }
+
+    // Método sobescrito (override)
+    // Os métodos sobrescritos vêm da classe ComponentActivity e fazem parte do ciclo de vida da Activity. Eles são chamados automaticamente pelo sistema Android
+    // onStart() - Quando a Activity se torna visível para o usuário
+    override fun onStart() {
+        super.onStart() // onStart() é chamado quando a Activity se torna visível, mas o usuário ainda pode não interagir com ela
+        estado = "STARTED" // Atualiza a variável estado para "STARTED"
+        Log.i(TAG, estado) // Registra no Logcat que a Activity entrou nesse estado
+    }
+
+    // onResume() - Quando a Activity está interativa
+    // é chamado quando a Activity está totalmente visível e o usuário pode interagir
+    // Se o usuário tocar na tela ou interagir, ele está nessa fase.
+    override fun onResume() {
+        super.onResume()
+        estado = "Tela Aparente para o usuário"
+        Log.i(TAG, estado)
+    }
+
+    // onRestart() - Quando a Activity volta após ser interrompida
+    //  onRestart() é chamado quando a Activity foi parada (onStop()) e está sendo reaberta
+    // Exemplo: O usuário volta ao app depois de ir para a tela inicial do celular
+    override fun onRestart() {
+        super.onRestart()
+        estado = "RESTARTED"
+        Log.i(TAG, estado)
+    }
+
+    // onPause() - Quando a Activity perde o foco
+    // onPause() é chamado quando outra tela aparece por cima, mas a Activity ainda não foi destruída
+    // Exemplo: O usuário recebe uma ligação, e o app perde o foco.
+    override fun onPause() {
+        super.onPause()
+        estado = "PAUSED"
+        Log.i(TAG, estado)
+    }
+
+    // onStop() - Quando a Activity não está mais visível
+    // onStop() é chamado quando a Activity não está mais visível.
+    // Exemplo: O usuário sai do app ou abre outro aplicativo.
+    // O app pode ficar em segundo plano, mas ainda está na memória.
+    override fun onStop() {
+        super.onStop()
+        estado = "STOPPED"
+        Log.i(TAG, estado)
+    }
+
+    // onDestroy() - Quando a Activity é finalizada
+    // onDestroy() é chamado quando a Activity está sendo removida da memória.
+    // Exemplo: O usuário fecha o app completamente ou o sistema mata o processo para liberar memória.
+    override fun onDestroy() {
+        super.onDestroy()
+        estado = "DESTROYED"
+        Log.i(TAG, estado)
+    }
+}
+
+// GREETING E GREETINGPREVIEW
+//  Função Greeting → Exibe um texto personalizado na tela do usuário
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Hello $name!",
+        modifier = modifier
+    )
+}
+
+// Função Greeting → Exibe um texto personalizado
+// Permite visualizar o componente Greeting dentro do Android Studio, sem precisar rodar o app
+// Mostra uma prévia do Greeting no Android Studio
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    ActivityLifeacycleTheme {
+        Greeting("Android")
+    }
+}
