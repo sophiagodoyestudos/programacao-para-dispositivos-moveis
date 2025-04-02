@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
         CRIADA não significa APARENTE
         - ou se4ja, quando uma Activity no Android é CRIADA (onCreate()), isso não significa que ela já está visível para o usuário
         1. Criada (onCreate()) → A Activity foi inicializada, mas pode ainda não estar visível na tela
-📌      2. Aparente (onResume()) → A Activity está visível e o usuário pode interagir com ela
+        2. Aparente (onResume()) → A Activity está visível e o usuário pode interagir com ela
          */
         estado = "CREATED" // Atualiza a variável estado para indicar que a tela foi criada
         Log.i(TAG, estado) // Registra um log no Logcat mostrando que a Activity foi criada
