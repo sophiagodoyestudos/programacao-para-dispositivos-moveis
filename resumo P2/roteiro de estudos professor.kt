@@ -45,4 +45,6 @@ EX: INCLUIR O FIREBASE NO ARQUIVO TAL...
 21) Ver montagem de tela complexa 
 
 22) Uso básico do Firestore e do Authentication (regras de segurança não cai nessa prova)  
+
+p1 + estrutura de um projeto no android + jetpack compose(elementar) + gerenciador column, modifiers e @composables + variáveis que mantem ou não estado(remember) + entendimento básico dos arquivos build.gradle.kts(do projeto e do módulo app) + como integrar seu projeto android com firebase(as etapas de configuração) + firebase firestore (sem regras) + coleção e documentos além da biblioteca para fazer inserção e consulta dos dados( ler a documentação completa do firebase firestore) + firebase authenctication e a documentação do firebase auth
 */
