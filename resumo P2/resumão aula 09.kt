@@ -178,3 +178,41 @@ todo o espaço disponível e wrapContentSize(Alignment.Center) para centralizar 
 - MainActivity chama a função TasksApp porque ela é responsável por exibir o conteúdo principal da tela. 
 - Portanto, TasksApp é a função de topo que contém toda a lógica de posicionamento e exibição da interface do aplicativo.
 */
+
+/*
+RESUMO AULA 09 DOCUMENTO 0NE DRIVE 
+1) O QUE É QUANDO CRIAMOS UM MODELO EMPTY ACTIVITY NO ANDROID STUDIO?
+- Quando criamos um modelo "Empty Activity" no Android Studio, estamos gerando um projeto básico com uma tela inicial (atividade) simples, 
+sem muitos recursos configurados. Esse modelo serve como um ponto de partida para o desenvolvimento do aplicativo, com o mínimo de configuração e código necessário.package
+
+2) O QUE SÃO OS ARQUIVOS GRADLE? 
+- Gradle é uma ferramenta usada para automatizar a construção e gerenciamento de projetos. Ele ajuda a configurar e organizar as partes do seu 
+aplicativo, como bibliotecas, configurações de compilação, e outras coisas.
+A) build.gradle (Projeto - fora da pasta app): Esse arquivo é responsável por configurar o projeto inteiro, dizendo onde as bibliotecas externas 
+vão ser baixadas e outras configurações globais.
+B) build.gradle (Módulo - dentro da pasta app): Esse arquivo é para configurações específicas do módulo (ou seja, de cada parte do seu aplicativo). 
+Nele, você define quais ferramentas ou bibliotecas o seu aplicativo vai usar.
+C) settings.gradle: Esse arquivo diz quais partes do seu aplicativo estão presentes no projeto, como se fosse um índice, listando todas as partes do 
+código que devem ser usadas.
+
+3) O QUE É O ARQUIVO LIBS.VERSIONS.TOML?
+- Esse arquivo é usado para controlar as versões das ferramentas e bibliotecas que seu projeto usa. Imagina que você tem várias ferramentas no seu 
+projeto, e esse arquivo te ajuda a garantir que todas as ferramentas estejam atualizadas ou que as versões certas estejam sendo usadas. 
+Ele evita problemas de versões incompatíveis.
+
+4) O QUE SÃO OS PLUGINS, ANDROID E DEPENDENCIES DENTRO DO ARQUIVO BUILD.GRADLE.KTS DO MÓDULO?
+- No arquivo build.gradle.kts, você vai ver algumas seções importantes que ajudam a configurar o seu projeto Android.
+A) Plugins: São ferramentas que você usa para melhorar o seu projeto. Por exemplo, o plugin do Android permite que você crie um aplicativo Android, 
+e o plugin do Kotlin ajuda a usar a linguagem Kotlin no seu projeto.
+B) Android: Aqui você diz ao Gradle quais são as configurações do Android que seu projeto vai usar, como quais versões do sistema Android ele vai 
+suportar ou outras configurações específicas.
+C) Dependencies: As dependências são bibliotecas externas que você vai usar no seu projeto. Por exemplo, se você quer enviar e-mails no seu 
+aplicativo, você vai usar uma dependência que fornece as ferramentas para fazer isso.
+
+5) QUAL É A DIFERENÇA ENTRE @COMPOSABLE E @PREVIEW?
+- Essas duas anotações (@Composable e @Preview) são usadas para criar e visualizar a interface do seu aplicativo no Android Studio.
+- @Composable: Essa anotação é usada para criar componentes da interface, como botões, textos, imagens, etc. Ou seja, ela desenha a interface na 
+tela.
+- @Preview: Quando você usa @Preview, ele cria uma visualização da interface que você fez, para que você possa ver como vai ficar sem precisar 
+rodar o aplicativo em um celular. Ele é como uma prévia da interface.
+*/
