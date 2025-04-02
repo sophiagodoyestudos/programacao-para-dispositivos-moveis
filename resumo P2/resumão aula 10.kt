@@ -184,4 +184,15 @@ bibliotecas que você está usando estejam atualizados e funcionando corretament
 Ele mostra mensagens detalhadas sobre o que está acontecendo no seu código, como mensagens de erro (crashes), mensagens de depuração 
 (com Log.d(), por exemplo) e outros eventos importantes. Logcat é muito útil para debugar e entender o que está acontecendo enquanto seu 
 aplicativo está rodando no dispositivo ou emulador.
+
+10) O QUE É UM EMULADOR?
+- Software que simula um dispositivo real para testar e depurar aplicativos sem precisar de hardware físico.
+
+11) O QUE SÃO OPERAÇÕES ASSÍNCRONAS NO FIREBASE? 
+- Operações assíncronas no Firebase são aquelas que envolvem comunicação com servidores remotos, como autenticação, leitura/gravação de dados no 
+Firestore e envio de arquivos no Firebase Storage. Elas não bloqueiam o app, permitindo que ele continue funcionando enquanto aguarda a resposta do 
+servidor.
+- Operações assíncronas no Firebase são aquelas que envolvem comunicação com servidores remotos, como autenticação, leitura/gravação de dados no 
+Firestore e envio de arquivos no Firebase Storage. Elas não bloqueiam o app, permitindo que ele continue funcionando enquanto aguarda a resposta do 
+servidor.
 */
