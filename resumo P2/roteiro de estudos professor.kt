@@ -13,6 +13,10 @@
 - Já no Jetpack Compose, tudo é feito direto no Kotlin, sem XML.
 - XML: forma antiga, usa arquivos separados, XML + Kotlin
 
+O QUE É O SETCONTENT?
+- setContent { ... } é o ponto de entrada da sua UI com Compose.
+- Ele "ativa" o Compose dentro da Activity e permite usar suas funções declarativas (@Composable) para desenhar a tela.
+
 2) QUAIS SÃO OS CONCEITOS BÁSICOS DE UM COMPOSE?
 2.1) @COMPOSABLE 
 - Função que desenha algo na tela 
