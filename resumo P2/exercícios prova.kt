@@ -294,3 +294,13 @@ fun FormularioTarefa(modifier: Modifier = Modifier) {
         }
     }
 }
+
+/*
+Em um determinado projeto Android, no arquivo AndroidManifest.xml, você se deparou com a seguinte permissão:
+*/
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+/*
+Qual é o objetivo dela?
+- Se o objetivo do aplicativo é usar a permissão de acesso à internet, muito provavelmente é para monitorar ou verificar conexões dentro do aplicativo.
+*/
