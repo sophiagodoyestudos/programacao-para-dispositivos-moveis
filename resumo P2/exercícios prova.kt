@@ -278,8 +278,8 @@ fun FormularioTarefa(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(10.dp),
             value = descricao,
-            onValueChange = { descricao = it },
-            label = { Text(text = "Descrição") }
+            onValueChange = { descricao = it }, // Atualiza o valor de email sempre que o usuário altera o texto.
+            label = { Text(text = "Descrição") } // Define um rótulo (label) para o campo com o texto "email".
         )
         Spacer(modifier = Modifier.height(16.dp))
         
