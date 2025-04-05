@@ -433,6 +433,35 @@ de dados, inteligência artificial e APIs.
 - O projeto contém arquivos globais como build.gradle, settings.gradle e gradle.properties.
 - O módulo app contém o código do aplicativo, dividido em java/ para a lógica, res/ para recursos visuais (como layouts, imagens e textos) e o 
 AndroidManifest.xml, que declara o nome do app, permissões e tela inicial.
+
+14) QUAIS SÃO AS DIFERENTES FORMAS DE ARMAZENAR APLICATIVOS EM NUVENS 
+14.1) LOCAL 
+- Os dados ficam salvas diretamente no dispositivo do usuário, não sendo necessário internet para acessar 
+- EX: SharedPreferences 
+
+14.2) NUVEM 
+- Os dados ficam armazenados em servidores externos e podem ser acessados de diferentes dipositivos via internet
+- EX: Firebase Firestore 
+
+15) VANTAGENS E DESVANTAGENS DO JATPACK ROOM E SHAREDPREFERENCES QUE SÃO FORMAS DE ARMAZENAR EM DADOS LOCAIS 
+15.1) JETPACK ROOM 
+- Armazenamento local baseado em SQLLite 
+- Não depende de internet 
+- Mais segurança e verificação 
+- Mais complexo que SharedPreferences
+- Não sincroniza com a nuvem 
+
+15.2) SHAREDPREFERENCES 
+- Armazenamento de dados simples (chave-valor)
+- Extremamente simples de usar e implementar
+- Não serve para grandes volumes de dados 
+- Armazena apenas dados simples (chave - valor) 
+
+16) EXPLIQUE O FIREBASE FIRESTORE QUE É UM DADO EM NUVEM 
+- Banco de dados em nuvem oferecido pelo Firebase 
+- Dados em nuvem, acessíveis em múltiplos dispositivos 
+- Necessita conexão com a internet 
+- Não é armazenamento local 
 */
 
 /*
