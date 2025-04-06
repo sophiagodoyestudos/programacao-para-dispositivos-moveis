@@ -1,0 +1,364 @@
+// RESUMÃO P2 
+
+/*
+@COMPOSABLE 
+- Andoid usado atualmente
+- Criar interfaces na tela usando apenas a linguagem Kotiln 
+- È declarativa (eu decrevo o que quero que o programa faça e não exatamente como ele deve fazer)
+- È reativa (o programa responde automaticamente a mudança de dados ou estado, eu não preciso ficar atualizando a tela manualmente
+ex: contador de botão) 
+- Não podem retornar valores como Int ou String, retornam UI (interface visual)
+- A interface é criada dentro do setContent{} (ponto de entrada da sua interface) dentro do onCreate 
+- O estado da interface é controlado com remember + mutableStateOf
+- Layouts comuns: Column, Rox, Box 
+- Para estilizar usamos Modifier (padding, fillMaxSize, etc)
+- Usamos Text() e Button(), para definir texto e botão 
+
+XML
+- Android tradicional método antigo 
+- Criar interfaces na tela usando Kotiln + XML 
+- A interface é declarada num arquivo separado (activity_main.xml) e o código Kotlin usa findViewById pra acessar os elementos
+- Utilizamos setContentView(R.layout...) e não setContent{}
+- Layout com LinearLayout, RelativeLayout
+- Utilizamos TextView e Button para definir texto e botão 
+
+CONCEITOS BÁSICOS SOBRE COMPOSE
+- Você pode usar uma composable dentro da outra, como se fossem blocos LEGO.
+
+1) O QUE É UM GERENCIADOR DE LAYOUT NO @COMPOSABLE?
+- São componentes que organiza os elementos na tela 
+- Controlam a posição e alinhamento dos itens 
+
+A) COLUMN - COLUNA
+- Organiza os elementos um embaixo do outro (verticalmente)
+
+B) ROW - LINHA
+- Organiza os elementos lado a lado (verticalmente)
+
+C) BOX - CAIXA
+- Organiza os elementos sobrepostos, um em cima do outro 
+
+2) MODIFIER - MODIFICADORA
+- Usado paraq modifiar a aparência e o comportamento de um elemento da interface 
+- Usado para aplicar tamanho, espaçamento, alinhamento, cor, clique, bordas e muito mais
+- Ex: padding(), .clickable(), .background() (posso usar um dentro do outro)
+
+3) STATE - ESTADO 
+- Com ele a tela muda automaticamente ao mudar o estado da minha Activity (reativo)
+- Usa remember e mutableStateOf
+
+A) O QUE É UMA VARIÁVEL REMEMBER - LEMBRAR 
+- Ela mantém o estado da variável quando a tela é redesenhada
+- Sem ele quando a tela é redesenhada o seu valor é perdido 
+- Serve para guardar o estado da interface, como o número de cliques, o texto digitado, se um botão foi pressionado, etc.
+
+O QUE SÃO OS ARQUIVOS GRADLE? 
+- Os arquivos Gradle são responsáveis por configurar o projeto Android (build)
+- Eles definem quais bibliotecas o app usa, quais versões do Android ele suporta, e como ele deve ser construído. 
+- Eles servem para dizer ao Android Studio como montar (compilar) o app.
+- São os scripts que dizem como montar (compilar) o app.
+
+A) BUILD.GRADLE (PROJECT)
+- Fica fora da pasta app 
+- Cuida do projeto inteiro 
+- Define coisas que todos os módulos vão usar juntos
+
+Dentro dele temos:
+A) plugins{...}
+- - Onde adicionamos funcionalidades extras que serão utilizadas no projeto inteiro 
+
+B) BUILD.GRADLE (APP OU MÓDULO)
+- Fica dentro da pasta app 
+- Cuida do seu aplicativo em si
+- Define coisas só do app Android
+- Configura o que o app vai fazer 
+
+Dentro dele temos:
+A) plugins {...}
+- Onde adicionamos funcionalidades extras ao projeto
+
+B) android {...}
+- Define informações do Android
+
+C) dependencies{...}
+- Onde declaro todas as bibliotecas que o meu app vai usar 
+- Tudo o que o projeto precisa para funcionar 
+
+FIREBASE, FIRESTORE, FIREBASE AUTH
+1) FIREBASE 
+- Plataforma do Google para desenvolvimento de aplicativos
+- Oferece algumas ferramentas prontas como: Banco de dados na nuvem, Autenticação de usuários, Notificações, Hospedagem
+- Vem com o backend pronto, eu só preciso me preocupar com a lógica do app
+
+2) FIRESTORE
+- Banco de dados na nuvem do Firestore baseado em documentos 
+- Não usa tabelas mas sim colunas e documentos 
+
+A) DOCUMENTOS 
+- São registros de dados individuais 
+- Cada documento tem um ID único 
+- Dentro dele, ficam os campos com os dados (como nome, email, telefone, etc.)
+
+B) COLEÇÕES
+- Conjunto de documentos 
+
+EX: Uma coleção chamada usuários, vai guardar as informações de todos os usuários (esses usuários vão estar separados em documentos)
+
+3) FIREBASE AUTH (AUTENTICAÇÃO)
+- Serviço de autenticação de usuário do Firebase (faz a autenticação dos usuários automaticamente - verifica e-mail e senha)
+- Eu preciso programar o envio e criar as telas de login e cadastro.
+
+A) QUAL A DIFERENÇA DO AUTENTICAÇÃO ANONIMO PARA OS OUTROS?
+- Cria um usuário temporariamente sem precisar de e-mail, senha
+- Deixar o usuário explorar o app sem se cadastrar ainda
+- Depois ele pode vincular esse login a um e-mail ou conta Google (sem perder os dados)
+
+USER AUTHENTICATION X USER PERMISSIONS 
+- User Authentication serve para identificar o usuário dentro do app
+- User Permissions são permissões declaradas no AndroidManifest.xml que controlam o que o app pode acessar no celular
+- Ou seja, Auth controla quem usa, e Permissions controlam o que o app pode usar no celular.
+
+QUAL É A DIFERENÇA DO FIREBASE PARA O GOOGLE CLOUD? 
+- Firebase: Criar apps móveis e web rapidamente com ferramentas prontas
+-  Firebase é ideal para desenvolvedores de apps que não querem se preocupar com servidor, banco e autenticação do zero.
+- Google Cloud: criar infraestrutura personalizada para sistemas maiores e mais complexos
+- Google Cloud é mais flexível, usado por empresas para criar qualquer tipo de sistema na nuvem
+
+PORQUE O FIREBASE É UM SUBPRODUTO DO GOOGLE CLOU? 
+- O Firebase faz parte do Google Cloud, sendo focada em criar apps móveis e web com rapidez 
+- Ele usa a infraestrutura poderosa do Google Cloud, mas oferece uma interface mais simples e focada no desenvolvedor.
+
+QUAL É A ESTRUTURA DE UM PROJETO ANDROID? O QUE VAI EM CADA DIRETÓRIO?
+- Organizada em dois níveis: projeto e módulo ou app
+1) PROJETO 
+- ficam os arquivos globais que controlam o funcionamento geral
+
+2) MÒDULO
+- fica o código do aplicativo, dividido em:
+
+A) java/ ou kotlin/: onde fica a lógica do app (Activities, classes, funções).
+
+B) res/: contém os recursos visuais, como layouts (layout/), textos (values/strings.xml), imagens (drawable/) e ícones (mipmap/).
+
+C) AndroidManifest.xml: arquivo que declara informações importantes como nome do app, permissões e qual tela será aberta primeiro.
+
+ANDROID MANIFEST.XML
+- É o documento de identidade do app Android.
+- Diz quem é seu app e o que ele precisa para funcionar (nome, permissões).
+
+Como ele é dividido por dentro:
+*/
+
+// Explicação do seu AndroidManifest.xml
+<?xml version="1.0" encoding="utf-8"?> 
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+	
+    /*
+    <application>
+	- Representa o app como um todo (ícone, nome, tema, etc.)
+    */
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Prova02"
+        tools:targetApi="31">
+        
+    	/*
+    	<activity>
+        - Declara cada tela do seu app (representa uma tela do app)
+        - Pode haver várias <activity>, mas só **uma terá <intent-filter> 
+        */
+    	<activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Prova02">
+    		
+    		/*
+    		<intent-filter>
+            - define a tela que abre quando o app é iniciado
+            - Diz qual tela é inicial (MAIN + LAUNCHER)
+            */
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+/*
+O QUE MAIS PODE TER NO MANIFEST?
+- <uses-permission>	-> Permissões que o app precisa (ex: INTERNET, CAMERA)
+- <service>	-> Declarar serviços em background
+- <receiver> -> Declarar receptores de mensagens do sistema
+- <meta-data> -> Enviar informações extras para bibliotecas ou o sistema
+ 
+QUAIS SÃO OS PROCEDIMENTOS PARA FAZER O SEU PROJETO ANDROID FUNCIONAR COM O FIREBASE?
+A) Criar o projeto no Firebase Console
+B) Registrar o app Android - nome do meu pacote 
+C) Baixar o arquivo google-services.json (ele deve ser colocado dentro da pasta app)
+D) Modificar o arquivo build.gradle (nível do projeto)
+E) Modificar o arquivo build.gradle (nível do app)
+F) Sincronizar o projeto (Sync Now)
+G) Usar os serviços Firebase no código
+
+O QUE É O ARQUIVO GOOGLE-SERVICES.JSON
+- È um arquivo que é gerado quando você está conectando o Firebase com o seu aplicativo Android
+- Ele contém as informações de configuração que o seu app Android precisa para funcionar junto com o Firebase
+- Ele tem que ser colocado dentro da pasta app do seu aplicativo Android
+
+O QUE ACONTECE QUANDO EU APERTO O SYNC NOW
+- Vai abaixar todos as dependencias do seu aplicativo atualizadas
+
+O QUE É UM PACOTE?
+- È uma pasta que serve paraq organizar o código do seu projeto 
+- Usamos pacotes para agrupar arquivos relacionados 
+
+QUAIS SÃO AS DIFERENTES FORMAS DE ARMAZENAR APLICATIVOS EM NUVENS 
+1) LOCAL 
+- Os dados ficam salvas diretamente no dispositivo do usuário, não sendo necessário internet para acessar 
+- EX: SharedPreferences e Jetpack Room
+
+A) SHAREDPREFERENCES 
+- Armazenamento de dados simples (chave-valor)
+- Extremamente simples de usar e implementar
+- Não serve para grandes volumes de dados 
+- Armazena apenas dados simples (chave - valor) 
+
+B) JETPACK ROOM 
+- Armazenamento local baseado em SQLLite 
+- Não depende de internet 
+- Mais segurança e verificação 
+- Mais complexo que SharedPreferences
+- Não sincroniza com a nuvem 
+
+2) NUVEM 
+- Os dados ficam armazenados em servidores externos e podem ser acessados de diferentes dipositivos via internet
+- EX: Firebase Firestore 
+
+Firebase Firestore: 
+- Banco de dados em nuvem oferecido pelo Firebase 
+- Dados em nuvem, acessíveis em múltiplos dispositivos 
+- Necessita conexão com a internet 
+- Não é armazenamento local 
+
+PRINCIPAIS MÉTODOS DO CICLO DE VIDA DA ACTIVITY 
+1) onCreate()	
+- Quando a Activity é criada (1ª vez)	
+- Inicializa a tela, define o layout com setContent ou setContentView
+
+2) onStart()	
+- Quando a Activity vai aparecer	
+- A tela está visível, mas ainda não interativa
+
+3) onResume()	
+- Quando a Activity fica interativa	
+- O app está em primeiro plano, pronto pra usar
+
+4) onPause()	
+- Quando o usuário sai da tela (mas ela ainda pode voltar)	
+- A tela perde o foco, mas ainda está na memória
+
+5) onStop()	
+- Quando a Activity não está mais visível	
+- Pode ser fechada ou trocada
+
+6) onDestroy()	
+- Quando a Activity é destruída	
+- Última chance de limpar recursos, memória, etc.
+*/
+
+class SignUpActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            SuperIDTheme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    SignUp(
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+fun saveUserToAuth(email: String, password: String, name: String) {
+    val auth = Firebase.auth
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = task.result.user
+                val uid = user!!.uid
+                Log.i("AUTH", "Conta criada com sucesso. UID: $uid")
+                saveUserToFirestore(name, email, uid)
+            } else {
+                Log.i("AUTH", "Falha ao criar conta.", task.exception)
+            }
+        }
+}
+
+fun saveUserToFirestore(name: String, email: String) {
+    val db = Firebase.firestore
+
+    val userData = hashMapOf(
+        "name" to name,
+        "email" to email
+    )
+
+    db.collection("users").add(userData)
+        .addOnSuccessListener { documentReference ->
+            Log.i("Firestore", "Dados do usuário salvos com sucesso. ID do documento: ${documentReference.id}")
+        }
+        .addOnFailureListener { e ->
+            Log.e("Firestore", "Erro ao adicionar documento", e)
+        }
+}
+
+@Composable
+fun SignUp(modifier: Modifier = Modifier) {
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+
+    Column(
+        modifier = modifier.padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Cadastro",
+            fontSize = 30.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.padding(10.dp),
+            value = name,
+            onValueChange = { name = it },
+            label = { Text(text = "Nome") }
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.padding(10.dp),
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email") }
+        )
+
+        Button(
+            onClick = {
+                saveUserToAuth(email, name)
+            }
+        ) {
+            Text(text = "Criar Conta")
+        }
+    }
+}
