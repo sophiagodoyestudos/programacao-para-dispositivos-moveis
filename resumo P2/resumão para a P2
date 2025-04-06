@@ -362,3 +362,16 @@ fun SignUp(modifier: Modifier = Modifier) {
         }
     }
 }
+
+// EXERCÍCIO IMPORTANTE 
+@Composable
+fun Contador() {
+    var contador by remember { mutableStateOf(0) }
+
+    Button(
+        onClick = { contador++ },
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Text(text = "Incrementar: $contador")
+    }
+}
