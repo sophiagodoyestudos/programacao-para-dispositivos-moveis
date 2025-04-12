@@ -1,0 +1,122 @@
+// Olhar GitHub normal: git@github.com:sophiagodoy/Intent-In-Jetpack-Compose.git
+// Olhar site utilizado para montagem: https://medium.com/@kathankraithatha/intent-in-jetpack-compose-88275bc3b878
+
+// AULA 11
+// Resumo do site: https://medium.com/@kathankraithatha/intent-in-jetpack-compose-88275bc3b878
+
+/*
+INTENT NO JETPACK COMPOSE
+- No Android, um Intent é um mecanismo usado para navegar o usuário até outra atividade ou aplicativo para realizar uma tarefa específica
+- São usados para avançar para a próxima atividade ou retornar à atividade anterior.
+
+TIPOS DE INTENTS
+1) INTENTS EXPLÍCITOS ]
+- Quando você diz exatamente para onde quer ir 
+- Quando usar: Quando você sabe a Activity (tela) exata do seu próprio aplicativo que deseja abrir.
+EX: Ao clicar no botão, vá para a SecondActivity
+- Você tem total controle de qual tela será aberta, pois especifica claramente o nome dela no código.
+
+- Indica diretamente o componente (atividade, serviço ou broadcast receiver) que deve lidar com a ação. 
+- É como enviar uma correspondência com endereço completo para um destino específico.
+- Quando você sabe exatamente qual Activity (ou outro componente) quer abrir
+
+2) INTENTS IMPLÍCITOS 
+- Quando você diz apenas o que quer fazer, mas não diz qual aplicativo específico deve fazer.
+EX: Quero compartilhar este texto”, e o Android escolhe qual app de compartilhamento (WhatsApp, Gmail, etc.) está instalado e pode fazer isso.
+- Quando usar:Quando a ação pode ser executada por vários aplicativos e você não se importa qual deles o usuário vai escolher.
+a) “Eu quero compartilhar uma foto ou um texto”,
+b) “Eu quero abrir o navegador para essa página da web”,
+c) “Eu quero tirar uma foto com qualquer aplicativo de câmera disponível”.
+- Você deixa o Android (e o usuário) decidirem o melhor app para a tarefa.
+
+- Descreve a ação desejada, mas não especifica o componente exato que irá tratar essa ação. 
+- Nesse caso, o Android decide qual aplicativo ou componente pode lidar com o pedido. 
+- É como dizer “quero enviar um e-mail” sem dizer exatamente qual aplicativo de e-mail usar.
+- Quando você quer compartilhar texto em redes sociais, abrir um link no navegador ou escolher um app de câmera, entre outros casos.
+*/
+
+/*
+Implementando Intent Explícito
+1) Crie a classe SecondActivity.kt:
+*/
+
+class SecondActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            IntentAndIntentFilterTheme {
+                Text(text = "Welcome to second activity")
+            }
+        }
+    }
+}
+
+/*
+- Envolvemos a nossa Activity com ComponentActivity() pois, por razões óbvias, estamos tratando-a como um dos nossos componentes. 
+- Depois disso, não fizemos mais nada além de exibir um texto de exemplo.
+
+2) Também adicione essa activity ao seu AndroidManifest.xml depois da atividade principal, pois ela faz parte das nossas activities:
+*/
+<activity android:name=".SecondActivity"></activity>
+
+// 3) Agora, dentro da classe MainActivity.kt:
+Column(
+    modifier = Modifier.fillMaxSize(),
+    verticalArrangement = Arrangement.Center,
+    horizontalAlignment = Alignment.CenterHorizontally
+) {
+    Button(
+        onClick = {
+            Intent(applicationContext, SecondActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+    ) {
+        Text(text = "Click on me")
+    }
+}
+
+/*
+- Aqui, criamos uma coluna (Column) que contém um botão. 
+- Dentro do bloco onClick, utilizamos um Intent que recebe o applicationContext (indicando que faz parte desta Activity) e SecondActivity::class.java, que é a tela para a qual queremos navegar. 
+- Em seguida, temos a expressão lambda que chama startActivity(it), responsável por efetivamente iniciar a transição de tela do MainActivity para o SecondActivity.
+*/
+
+// 4) Abrindo o YouTube Usando Intent
+// Para abrir o YouTube via Intent, você pode implementar o seguinte código:
+Intent(Intent.ACTION_MAIN).also {
+    it.`package` = "com.google.android.youtube"
+    try {
+        startActivity(it)
+    } catch (e: ActivityNotFoundException) {
+        e.printStackTrace()
+    }
+}
+
+/*
+- Insira este código dentro do bloco onClick do botão. 
+- Aqui, o Intent.ACTION_MAIN é usado porque estamos abrindo diretamente o aplicativo principal, que, obviamente, é o YouTube. 
+- Em seguida, dentro da expressão lambda (also), definimos o nome do pacote como "com.google.android.youtube", que corresponde ao aplicativo do YouTube. Por fim, chamamos startActivity(it) para efetivamente iniciar o aplicativo, envolvendo-o em um bloco try/catch para lidar com eventuais exceções, caso o app não esteja instalado ou ocorra algum outro erro.
+*/
+
+// Implementando Intents Implícitos
+/*
+- Conforme discutimos anteriormente neste blog, “o Android descobre qual componente pode lidar com a ação. É como pedir um serviço específico sem saber exatamente onde ele está.” Dessa forma, um implicit intent sugere qual atividade abrir de acordo com o que for mais adequado. Veja abaixo como podemos escrever (ou iniciar um rascunho de) um e-mail usando um Intent Implícito.
+*/
+
+// 5) Dentro do bloco onClick do botão:
+val intent = Intent(Intent.ACTION_SEND).apply {
+    type = "text/plain"
+    putExtra(Intent.EXTRA_EMAIL, arrayListOf("youremailid@gmail.com"))
+    putExtra(Intent.EXTRA_SUBJECT, "This is the subject of the mail")
+    putExtra(Intent.EXTRA_TEXT, "This is the text part of the mail")
+}
+if (intent.resolveActivity(packageManager) != null) {
+    startActivity(intent)
+}
+
+/*
+- Aqui, definimos o intent em uma variável val. Dentro dela, temos um Intent que utiliza Intent.ACTION_SEND, pois precisamos enviar um e-mail. Dentro do bloco apply, definimos o tipo da intent como "text/plain" e, em seguida, usamos putExtra para inserir os dados.
+- No primeiro bloco, usamos Intent.EXTRA_EMAIL, arrayListOf("youremailid@gmail.com") para preencher o campo de e-mail (podemos ter vários blocos putExtra em um único Intent). Em seguida, no próximo bloco, definimos tanto o assunto (subject) como o conteúdo desse assunto. Da mesma forma, também incluímos o texto (corpo do e-mail) e seu conteúdo. Esses putExtra preenchem todos os detalhes comuns a um e-mail.
+- Depois disso, dentro do if (intent.resolveActivity(packageManager) != null), iniciamos nossa activity. Esse bloco garante que a activity está disponível para gerenciar a ação, ou seja, que existe um aplicativo capaz de lidar com o envio de e-mail.
+*/
