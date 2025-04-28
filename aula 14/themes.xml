@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AulaTema" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
+
+<!--
+- Esse arquivo serve para definir temas e estilos visuais do app
+-->
