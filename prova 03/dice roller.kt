@@ -1,3 +1,5 @@
+// Site de estudo: https://developer.android.com/codelabs/basic-android-kotlin-compose-build-a-dice-roller-app?hl=pt-br#6
+
 package br.com.puc.diceroller
 
 import android.os.Bundle
