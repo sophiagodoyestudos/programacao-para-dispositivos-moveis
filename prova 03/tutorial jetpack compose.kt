@@ -14,8 +14,10 @@ TUTORIAL DO JETPACK COMPOSE
 - Declarativo (Compose): você descreve o que a UI deve mostrar, em função dos dados/estado. O Compose cuida de como renderizar e atualizar tudo.
 
 4) O papel do compilador do Compose
-- O plugin do Compose no compilador Kotlin analisa suas funções anotadas com @Composable e gera, nos bastidores, todo o código necessário para criar, atualizar e descartar componentes de UI.
-- Ele lida com a recomposição: quando seu estado mudar, o Compose verifica quais partes da UI precisam ser redesenhadas — sem você ter que gerenciar isso manualmente.
+- O plugin do Compose no compilador Kotlin analisa suas funções anotadas com @Composable e gera, nos bastidores, todo o código necessário para criar,
+atualizar e descartar componentes de UI.
+- Ele lida com a recomposição: quando seu estado mudar, o Compose verifica quais partes da UI precisam ser redesenhadas — sem você ter que gerenciar 
+isso manualmente.
 
 5) O que o tutorial propõe
 - Criar um componente simples: você vai escrever uma função @Composable.
@@ -24,13 +26,16 @@ TUTORIAL DO JETPACK COMPOSE
 - Funções de composição: cada função @Composable define um pedaço da UI, e você pode combinar várias para montar telas completas.
 
 Resumindo:
-- Jetpack Compose moderniza o desenvolvimento Android ao permitir que você declare sua interface diretamente em Kotlin, com menos código, previews imediatos e um motor de recomposição que atualiza só o que mudou. No tutorial, você vai experimentar isso na prática, criando componentes sem mexer em XML, apenas chamando funções de composição.
+- Jetpack Compose moderniza o desenvolvimento Android ao permitir que você declare sua interface diretamente em Kotlin, com menos código, previews 
+imediatos e um motor de recomposição que atualiza só o que mudou. No tutorial, você vai experimentar isso na prática, criando componentes sem mexer 
+em XML, apenas chamando funções de composição.
 */
 
 /*
 LIÇÃO 01 - FUNÇÕES DE COMPOSIÇÃO 
 - O Jetpack Compose foi criado com base em funções que podem ser compostas
-- Essas funções permitem que você defina a interface do app de maneira programática, descrevendo as dependências de dados e de formas dela, em vez de se concentrar no processo de construção da interface (inicializando um elemento, anexando esse elemento a um pai etc.)
+- Essas funções permitem que você defina a interface do app de maneira programática, descrevendo as dependências de dados e de formas dela, em vez 
+de se concentrar no processo de construção da interface (inicializando um elemento, anexando esse elemento a um pai etc.)
 - Para criar uma função que pode ser composta, basta adicionar a anotação @Composable ao nome da função.
 
 No composable:
@@ -38,7 +43,8 @@ No composable:
 - Seu código foca o que a UI deve mostrar, e não como montar cada View
 
 Resumindo:
-- anotar uma função com @Composable faz dela uma peça da interface do seu app. Você descreve o que quer ver (dados e layout) – o Compose cuida do como tudo será construído e atualizado em tela.
+- anotar uma função com @Composable faz dela uma peça da interface do seu app. Você descreve o que quer ver (dados e layout) – o Compose cuida do 
+como tudo será construído e atualizado em tela.
 
 1) COMO ADICIONAR UM ELEMENTO DE TEXTO? 
 O que é o setContent? 
@@ -54,7 +60,8 @@ Qual é o papel do plugin do compilador Kotlin?
 - O Jetpack Compose usa um plug-in do compilador Kotlin para transformar essas funções de composição nos elementos de IU do app
 - Detecta as funções anotadas com @Composable e as transformam em uma UI
 - Sem esse plugin, chamar Text("…") seria apenas uma função normal, sem nenhum vínculo com o sistema de UI.
-- O plugin Kotlin converte essas chamadas em código que cria e atualiza os widgets de verdade, cuidando de toda a parte pesada de renderização e gerenciamento de estado.
+- O plugin Kotlin converte essas chamadas em código que cria e atualiza os widgets de verdade, cuidando de toda a parte pesada de renderização e 
+gerenciamento de estado.
 */
 
 import android.os.Bundle
@@ -64,7 +71,8 @@ import androidx.compose.material3.Text // Text é anotado com @Composable aqui
 
 // Definição da Activity
 class MainActivity : ComponentActivity() { // Aqui estamos criando a Activity principal do app, nesse caso a MainActivity
-    override fun onCreate(savedInstanceState: Bundle?) { // Estamos definindo o ciclo de vida da nossa Activity, nesse caso é o onCreate que é chamado quando a Activity é criada 
+    override fun onCreate(savedInstanceState: Bundle?) { // Estamos definindo o ciclo de vida da nossa Activity, nesse caso é o onCreate que é 
+        chamado quando a Activity é criada 
         super.onCreate(savedInstanceState) // executa a lógica base (como restaurar o estado, inicializar componentes do framework).
         /*
         Bloco de composição
@@ -115,7 +123,8 @@ fun MessageCard(name: String) {
 
 /*
 3) COMO VISUALIZAR A FUNÇÃO ANDROID NO STUDIO? 
-- A anotação @Preview permite visualizar as funções de composição no Android Studio sem precisar criar e instalar o app em um emulador ou dispositivo Android. 
+- A anotação @Preview permite visualizar as funções de composição no Android Studio sem precisar criar e instalar o app em um emulador ou 
+dispositivo Android. 
 - A anotação precisa ser usada em uma função de composição que não use parâmetros.
 */
 
@@ -140,7 +149,8 @@ LIÇÃO 02 - LAYOUTS
 - No Compose, você cria uma hierarquia de interface chamando funções combináveis usando outras funções desse tipo.
 
 1) COMO ADICIONO VÁRIOS TEXTOS? 
-- Para ter mais de um Text na sua UI, você precisa usar um composable de layout que agrupe filhos — por exemplo um Column (vertical) ou Row (horizontal).
+- Para ter mais de um Text na sua UI, você precisa usar um composable de layout que agrupe filhos — por exemplo um Column (vertical) ou Row 
+(horizontal).
 -  Assim sua hierarquia fica clara e o Compose sabe onde posicionar cada elemento
 
 2) COMO USAR UMA COLUNA? 
@@ -154,7 +164,8 @@ LIÇÃO 02 - LAYOUTS
 
 4) COMO CONFIGURAR O LAYOUT? 
 - Para arrumar os layouts o Composable utiliza modificadores 
-- Eles permitem alterar o tamanho, o layout e a aparência dos elementos que podem ser compostos ou adicionar interações de alto nível, como tornar um elemento clicável.
+- Eles permitem alterar o tamanho, o layout e a aparência dos elementos que podem ser compostos ou adicionar interações de alto nível, 
+como tornar um elemento clicável.
 */
 
 import androidx.compose.foundation.layout.Spacer
@@ -211,7 +222,8 @@ mantendo tudo visualmente uniforme.
 -  Você pode usar esses valores do tema em qualquer lugar em que uma cor seja necessária
 
 3) O QUE É TIPOGRAFIA?
-- È o conhunto de estilos de textos padronizados — ou seja, as famílias de fontes, tamanhos, pesos, alturas de linha e espaçamentos que o seu app vai usar para todos os textos.
+- È o conhunto de estilos de textos padronizados — ou seja, as famílias de fontes, tamanhos, pesos, alturas de linha e espaçamentos que o seu app 
+vai usar para todos os textos.
 
 4) O QUE É FORMA? 
 O que é o Surface composable? 
@@ -223,8 +235,35 @@ Ele expõe propriedades como:
 - elevation: controla a sombra/profundidade, dando “camadas” à UI.
 - color: fundo, que por padrão vem de MaterialTheme.colorScheme.surface.
 
-5) COMO ATIVAR O TEMA ESCURO? 
-CONTINUAR DAQUIIIIIIIIIIIIIIIIIIIIIIII
+5) COMO ATIVAR O TEMA ESCURO? - VER MELHOR COMO FUNCIONA 
+VERRRRRRRRRRRRRRRRRRRRRRRRR - FAZER RESUMO SITE 
 */
-  
+
+/*
+LIÇÃO 04: LISTAS E ANIMAÇÕES 
+1) CRIAR UMA LISTA DE MENSAGENS 
+a) O que é o LazyColumn e LazyRow do Composable?
+- Essas funções de composição processam apenas os elementos visíveis na tela
+- Portanto, elas são muito eficientes para listas longas
+- Elas mostram só itens que cabem na tela e vai puxando mais itens conforme você vai rolando para cima/baixo (coluna) ou para os lados (linhas)
+- você vê só o que está passando diante de você; o resto só aparece quando chega no seu campo de visão.
+- Então, sempre que você tiver uma lista grande — uma conversa de chat, um carrossel de fotos, uma lista de produtos — use LazyColumn (vertical) ou LazyRow (horizontal) para que o app carregue apenas o que você está vendo.
+
+b) Qual a diferença deles para o Column e Row normal?
+Column:
+- “Não preguiçoso”: o Compose vai compor (criar) todos os elementos filhos de uma vez só, mesmo os que estão lá embaixo e você ainda não rolou para ver.
+- Se você colocar 1.000 textos dentro de uma Column(modifier = Modifier.verticalScroll(...)), o app vai gerar 1.000 composições imediatamente, gastando memória e CPU.
+
+LazyColumn: 
+- “Preguiçoso”: só compõe os itens que cabem na tela (mais alguns de buffer à frente e atrás).
+- Conforme você vai rolando, ele “descompoõe” itens que saíram de vista e “compõe” novos que estão chegando.
+- Isso mantém o uso de memória e processamento baixo mesmo em listas longas.
+
+- Row e LazyRow é a mesma coisa
+
+2) ANIMAR MENSAGEM AO ABRIR
+O que é recomposição (remember e mutableStateOf)?
+
+*/
+ 
   
