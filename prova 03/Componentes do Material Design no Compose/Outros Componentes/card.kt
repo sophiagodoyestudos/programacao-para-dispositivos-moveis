@@ -1,4 +1,6 @@
 /*
+Site de estudo: https://developer.android.com/develop/ui/compose/components/card?hl=pt-br
+
 CARD 
 - Um Card serve para apresentar informações relacionadas a um único assunto ou elemento
 - O Card é feito para ser visualmente destacado e isolado, chamando atenção para um bloco de conteúdo específico.
