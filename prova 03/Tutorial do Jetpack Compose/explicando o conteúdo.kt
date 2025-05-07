@@ -170,16 +170,7 @@ Site de estudo de como implementar o modo escuro: https://developer.android.com/
 3.6) Quero deixar sempre no modo escuro  
 - Nessa mesma linha altere para: darkTheme: Boolean = false
 - Sempre usa o LightColorScheme, mesmo que o sistema esteja em modo escuro.
-
-3.7) Eu preciso dessa função mesmo configurando no arquivo Theme.kt qual modo eu quero?
 */
-
-@Preview(name = "Light Mode")
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode"
-)
 
 /*
 LIÇÃO 04: LISTAS E ANIMAÇÕES
