@@ -2,43 +2,30 @@
 Site de estudo: https://developer.android.com/develop/ui/compose/components/progress?hl=pt-br
 
 INDICADORES DE PROGRESSO 
-- Exibem o status (progresso) de uma operação 
-- Utilizado para carregamento ou processamento de dados 
-- Indica o quão perto o processo pode estar de conclusão 
+- Exibem visualmente o status de uma operação 
+- Usado para chamar a atenção do usuário para o quanto o processo está próximo da conclusão, como:
+a) carregar ou processar dados 
 
-Três principais utilizações
-- Carregamento de conteúdo: ao buscar conteúdo de uma rede, como o carregamento de uma imagem ou dados de um perfil de usuário
-- Upload de arquivos: informe ao usuário quanto tempo o upload pode levar
-- Processamento longo: enquanto um app está processando uma grande quantidade de dados, comunique ao usuário quanto do total foi concluído 
+Pode ser usados em: 
+a) Carregamento de conteúdo: ao buscar conteúdo de uma rede, como o carregamento de uma imagem ou dados de um perfil de usuário.
+b) Upload de arquivos: informe ao usuário quanto tempo o upload pode levar.
+c) Processamento longo: enquanto um app está processando uma grande quantidade de dados, comunique ao usuário quanto do total foi concluído.
 
-No Material Design, há dois tipos de indicador de progresso:
+Existem dois tipos de indicadores de progresso:
 a) Determinado: exibe exatamente o progresso feito.
-- mostra exatamente quanto do trabalho já foi concluído, geralmente como uma porcentagem.
-- Quando usar: sempre que você souber o tamanho total do trabalho 
-Exemplo:
-- upload de arquivo, carregamento de página com número conhecido de itens
-
 b) Indeterminado: a animação é contínua sem considerar o progresso.
-- exibe uma animação contínua (movimento repetido) sem indicar o quanto já foi concluído
-- Quando usar: quando não se sabe antecipadamente quanto tempo ou quanto trabalho resta (por exemplo, aguardar resposta de rede onde não há tamanho de payload conhecido, operações de inicialização genéricas).
 
-O indicador de progresso pode assumir duas formas: 
-- Linear: uma barra horizontal que preenche da esquerda para a direita.
-- Circular: um círculo cujo traço cresce em comprimento até abranger o circunferência completa do círculo.
+Ele pode assumir duas formas: 
+a) Linear: uma barra horizontal que preenche da esquerda para a direita.
+b) Circular: um círculo cujo traço cresce em comprimento até abranger o circunferência completa do círculo.
 
-PLATAFORMA DA API
-Os principais parâmetros para criar indicadores de progresso são:
-a) progress: Valor atual que indica o andamento. Deve ser um número decimal (float) entre 0.0 (nenhum progresso) e 1.0 (progresso completo).
-b) color: Cor usada para representar visualmente o progresso atingido no indicador. Quando o progresso chega em 1.0, essa cor preenche todo o componente.
-c) trackColor: Cor utilizada na faixa de fundo onde o indicador de progresso é exibido, indicando visualmente o espaço que ainda precisa ser preenchido.
+PLATAFORMA DA API 
+a) progress: o progresso atual que o indicador mostra. Transmita um Float entre 0.0 e 1.0.
+b) color: a cor do indicador real. Ou seja, a parte do componente que reflete o progresso e que engloba totalmente o componente quando o progresso é concluído.
+c) trackColor: a cor da faixa em que o indicador é desenhado.
 
-DETERMINAR INDICADORES 
-- No Compose, os indicadores determinados são feitos com os componentes:
-a) LinearProgressIndicator → mostra o progresso em uma barra horizontal.
-b) CircularProgressIndicator → mostra o progresso em formato circular.
-- Ambos recebem o parâmetro progress (um valor entre 0.0 e 1.0) para definir o nível de conclusão.
-
-Exemplo:
+DETERMINAR INDICADORES (Determinado)
+- Use os elementos combináveis: LinearProgressIndicator (se quiser de linha) ou CircularProgressIndicator (se quiser de círculo)
 */
 
 @Composable
@@ -81,13 +68,10 @@ suspend fun loadProgress(updateProgress: (Float) -> Unit) {
 }
 
 /*
-INDICADORES INDETERMINADOS 
-No Compose, os indicadores indeterminados são feitos com os componentes:
-a) LinearProgressIndicator
-b) CircularProgressIndicator
-- Podem ser usados sem passar o parâmetro progress para funcionar como indeterminados.
-
-Exemplos:
+INDICADORES INDETERMINADOS (Indeterminado)
+- Não reflete o quão próximo da conclusão uma operação está 
+- Ele usa o movimento (do círculo) para indicar que o processo está em andamento 
+- Use o elemento combinável LinearProgressIndicator ou CircularProgressIndicator
 */
 
 @Composable
