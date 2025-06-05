@@ -52,8 +52,16 @@ import br.com.ibm.superid.ui.theme.core.util.signInWithFirebaseAuth
 import kotlin.jvm.java
 
 // Declarando a Activity para realizar o login do usuário
+/*
+ O que é a classe ComponentActivity?
+ - È como um molde pronto que já vem preparado para atender às necessidades atuais de desenvolvimento de apps Android, especialmente quando você usa o Jetpack Compose
+ - Com ela você pode focar apenas em que vai aparecer na tela e como o usuário vai interagir
+*/
 class SignInActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+         /*
+    	 - Sobresceve o método onCreate da Activity, que é chamado quando a Activity é criada
+        */
         super.onCreate(savedInstanceState)
         enableEdgeToEdge() // Conteúdo ocupa a tela toda
         setContent { // Tudo o que estiver aqui é a UI da Activity
@@ -67,6 +75,7 @@ class SignInActivity : ComponentActivity() {
 // Função responsável pela interface da tela de login
 /*
 Porque eu uso o modifier dentro do SignIn?
+- Permite que quem chamar o SignIn adicione comportamentos de layout ou estilo
 */
 @Composable
 fun SignIn(modifier: Modifier = Modifier) {
