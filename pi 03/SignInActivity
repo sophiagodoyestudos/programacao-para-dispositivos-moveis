@@ -1,1 +1,300 @@
-f
+// TELA PARA O USUÁRIO REALIZAR O LOGIN
+
+package br.com.ibm.superid
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
+import br.com.ibm.superid.ui.theme.SuperIDTheme
+import br.com.ibm.superid.ui.theme.core.util.CustomOutlinedTextField
+import br.com.ibm.superid.ui.theme.core.util.SuperIDHeader
+import br.com.ibm.superid.ui.theme.core.util.signInWithFirebaseAuth
+import kotlin.jvm.java
+
+// Declarando a Activity para realizar o login do usuário
+class SignInActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge() // Conteúdo ocupa a tela toda
+        setContent { // Tudo o que estiver aqui é a UI da Activity
+            SuperIDTheme {
+                br.com.ibm.superid.SignInPreview()
+            }
+        }
+    }
+}
+
+// Função responsável pela interface da tela de login
+/*
+Porque eu uso o modifier dentro do SignIn?
+*/
+@Composable
+fun SignIn(modifier: Modifier = Modifier) {
+
+    /*
+    Para que é o context? 
+    - é uma forma de obter o contexto atual dentro de um composable 
+    - usado para mudança de tela e toast 
+    */
+    val context = LocalContext.current
+
+    /*
+    Qual é a diferença do var e do val nesse caso?  
+    - val = imutável
+    - var = mutável 
+    - As variáveis são mutáveis nesse caso, pois eu preciso que o valor dessas variáveis mudem, se fosse val elas não poderiam mudar nunca
+    - Para campos de texto em que o usuário digita livremente sempre tem que ser var, pois a variável sempre está em constante mudança 
+    
+    Para que é o by remember?
+    - Garante que durante a recomposição das telas o valor continue sendo preservado 
+    */
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) } // Variável para ver a senha
+
+    /*
+    Para que é o modifier?
+    - Forma de configurar comportamento e aparência de um composable (Column, Box, Text)
+    - È como uma caixa de ferramente que você anexa a um Composable para mudar como ele é medido, desenhado e interage
+    
+    Para que é o fillMaxSize()?
+    - Serve para preencher toda a largura e toda a altura disponível dentro do seu conteiner pai (Column, Box,...)
+    
+    background -> Pinta toda a área definida até aquele ponto (pinta o fundo da tela)
+    */
+    Column (
+        modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.background)
+    ) {
+
+        // Cabeçalho visual personalizado
+        SuperIDHeader()
+
+        // Seta de voltar
+        // Baseado em: https://developer.android.com/develop/ui/compose/components/app-bars?hl=pt-br#top-app-bar
+        // Baseado em: https://alexzh.com/visual-guide-to-topappbar-variants-in-jetpack-compose/
+        IconButton(
+            onClick = {
+                val intent = Intent(context, AccessOptionActivity::class.java)
+                context.startActivity(intent)
+            },
+            /*
+            start -> controla a distância do componente em relação a borda lateral inicial package
+            
+            top -> controla a distância em relação ao topo
+            
+            Qual a diferença de dp e sp?
+            dp -> usado para dimensões de layout 
+            sp -> usado para apenas tamanho de texto            
+            */
+            modifier = Modifier.padding(start = 8.dp, top = 8.dp)
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Voltar para escolher login ou cadastro"
+            )
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 80.dp),
+            /*
+            Para que é o padding?
+            - Serve para criar um "espaço vazio" entre a borda externa de um Composable e o coteúdo interno 
+            
+            verticalArrangement = Arrangement.Top, -> faz com que os filhos fiquem colados no topo da área
+            
+            horizontalAlignment = Alignment.CenterHorizontally -> faz com que os filhos fiquem centralizados horizontalmente
+            */
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+
+            // Define o título da tela
+            Text(
+                text = "LOGIN",
+                
+                /*
+                fontSize -> define o tamanho da fonte que será usada 
+                */
+                
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold // Negrito
+            )
+
+            // Campo para digitar o email
+            /*
+            OutlinedTextField
+            - desenha um campo de texto com uma borda contornada 
+            
+            value = email 
+            - representa o texto que está sendo escrito atraves da variável email 
+            
+            onValueChange = { email = it },
+            - é um callback que é chamado sempre quando o usuário digita algo novo 
+            - Ao fazer { email = it }, você está atualizando o estado email para o novo valor que o usuário digitou
+            - estou disparando uma nova recomposição de tela, por isso tenho que usar var 
+            
+            label = "Email" -> é o texto que será exibido 
+            */
+            CustomOutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = "Email"
+            )
+
+            // Campo para digitar a senha
+            CustomOutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = "Senha",
+                
+	            // Ocultação e exibição de senha
+                // se passwordVisible = true (usuário clicou em mostrar senha) exibe a senha 
+                visualTransformation = if (passwordVisible) {
+                    VisualTransformation.None // Exibe o texto normalmente
+                } else {
+                    PasswordVisualTransformation() // Substitui cada caracter por "."
+                },
+
+                /*
+                - Declaro como o teclado vai se comportar
+                - O usuário não receba sugestões de palavras enquanto digita a senha (nem correções automáticas).
+                - O teclado adote o comportamento padrão para campos de senha (ex.: mascarar o texto digitado).
+                */
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password
+                ),
+
+                // Alterando a visibilidade da imagem
+                trailingIcon = {
+                    IconButton(
+                        onClick = {
+                            /*
+                            - “passwordVisible” é um Booleano que indica se a senha deve aparecer em texto normal (true) ou mascarada (false).
+                            
+                            - O operador “!” (not) inverte esse valor Booleano ( toda vez que o usuário tocar nesse ícone, o valor de passwordVisible será invertido)
+                            - Se passwordVisible estava false (senha oculta), passa a true (senha visível).
+							- Se estava true, volta a false.
+                            */
+                            passwordVisible = !passwordVisible
+                        }
+                    ) {
+                        Icon(
+                            imageVector = if (passwordVisible){
+                                Icons.Default.Visibility // Olho aberto
+                            } else {
+                                Icons.Default.VisibilityOff // Olho fechado
+                            },
+                            contentDescription = if (passwordVisible){
+                                "Ocultar senha"
+                            } else {
+                                "Mostrar senha"
+                            }
+                        )
+                    }
+                }
+            )
+
+            // Texto clicável para a recuperação de senha do usuário
+            Text(
+                text = "Esqueceu a senha?",
+                /*
+                fontWeight -> controla a expessura do texto (grosso ou fino)
+                */
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colorScheme.tertiary,
+                fontSize = 16.sp,
+                style = TextStyle(textDecoration = TextDecoration.Underline), // Aplica sublinhado ao texto
+                modifier = Modifier
+                    .padding(top = 8.dp)
+
+                    // Torna o texto clicável
+                    // Baseado na documentação: https://developer.android.com/develop/ui/compose/touch-input/pointer-input/tap-and-press?hl=pt-br
+                    .clickable {
+                        val intent = Intent(context, ForgotPasswordActivity::class.java)
+                        context.startActivity(intent)
+                    }
+            )
+
+            /*
+            height -> altura (espaço)
+            */
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Botão de ação para logar o usuário
+            Button(
+                onClick = {
+                    // Verifica se algum campo está em branco (se está vazio ou apenas com espaços)
+                    if (email.isBlank() || password.isBlank()) {
+                        Log.i("SIGN IN", "Preencha todos os campos")
+                        Toast.makeText(context, "Preencha todos os campos!", Toast.LENGTH_LONG).show()
+
+                    } else {
+                        signInWithFirebaseAuth(email, password, context)
+                        Log.i("SIGN IN", "Usuário logado com sucesso")
+                    }
+                },
+                modifier = Modifier
+                	/*
+                	height -> altura
+                    widht -> largura
+                    */
+                    .height(60.dp)
+                    .width(150.dp)
+            ) {
+                Text("Entrar")
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun SignInPreview(){
+    SuperIDTheme {
+        SignIn()
+    }
+}
